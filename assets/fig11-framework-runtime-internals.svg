@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 420" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="420" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 11：2025-2026 四大主流多智能体框架底层运行时对比</text>
+
+  <rect x="24" y="56" width="504" height="164" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="44" y="82" font-size="15" font-weight="bold" fill="#1E3A8A">1. LangGraph：基于 BSP/Pregel 的显式循环图状态机</text>
+  <text x="44" y="106" font-size="12" fill="#334155">• 核心抽象：全局 TypedDict State + Reducers + Conditional Edges + Command</text>
+  <text x="44" y="128" font-size="12" fill="#334155">• 状态流转：节点不直接调节点，而是返回状态增量 (Delta)，由图引擎推进超步</text>
+  <text x="44" y="150" font-size="12" fill="#1E40AF" font-weight="bold">• 核心能力：原生 Checkpointer + interrupt() 断点挂起，支持长周期人工审批与回溯</text>
+  <text x="44" y="172" font-size="12" fill="#334155">• 适用场景：强流程约束、有环路回退与审计留痕要求的严肃医疗/金融业务</text>
+  <text x="44" y="196" font-size="11" fill="#64748B">代价：图拓扑需工程显式定义，代码结构比纯对话框架更严格</text>
+
+  <rect x="552" y="56" width="504" height="164" rx="10" fill="#FEF3C7" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="572" y="82" font-size="15" font-weight="bold" fill="#92400E">2. Microsoft AutoGen v0.4 (AG2)：异步事件驱动 Actor 模型</text>
+  <text x="572" y="106" font-size="12" fill="#334155">• 架构演进：抛弃 v0.2 同步阻塞群聊，重构为 Core (Actor运行时) + AgentChat</text>
+  <text x="572" y="128" font-size="12" fill="#334155">• 通信机制：各 Agent 作为独立 Actor 实例，通过异步 Event Bus 发布/订阅消息</text>
+  <text x="572" y="150" font-size="12" fill="#92400E" font-weight="bold">• 核心能力：支持跨语言（Python/.NET）分布式部署与高并发长耗时异步任务</text>
+  <text x="572" y="172" font-size="12" fill="#334155">• 适用场景：大规模分布式多语言微服务协同、长时间后台事件流处理</text>
+  <text x="572" y="196" font-size="11" fill="#64748B">代价：异步事件流调试复杂度高，需配套 OpenTelemetry 全链路追踪</text>
+
+  <rect x="24" y="236" width="504" height="164" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="44" y="262" font-size="15" font-weight="bold" fill="#065F46">3. OpenAI Agents SDK：轻量原语与并行护栏 (演进自 Swarm)</text>
+  <text x="44" y="286" font-size="12" fill="#334155">• 核心原语：Agent + Handoff (控制权移交函数) + Guardrail (并行护栏) + Tracing</text>
+  <text x="44" y="308" font-size="12" fill="#334155">• 并行护栏：小模型/规则护栏与主模型并发执行，一旦违规立即中断主模型节省开销</text>
+  <text x="44" y="330" font-size="12" fill="#047857" font-weight="bold">• 核心能力：轻量级 Python 原生控制流，内置 MCP 工具挂载与会话追踪</text>
+  <text x="44" y="352" font-size="12" fill="#334155">• 适用场景：多级客服分流、快速原型构建、单向或浅层多智能体交接</text>
+  <text x="44" y="376" font-size="11" fill="#64748B">代价：复杂有环状态回滚与跨天级持久化需自行对接外部存储</text>
+
+  <rect x="552" y="236" width="504" height="164" rx="10" fill="#F3E8FF" stroke="#D8B4FE" stroke-width="1.5"/>
+  <text x="572" y="262" font-size="15" font-weight="bold" fill="#581C87">4. Anthropic 生产范式：主从扇出 + 外部记忆快照</text>
+  <text x="572" y="286" font-size="12" fill="#334155">• 核心结构：Lead Agent (全局规划) + N × Subagents (并行沙箱执行) + Verifier</text>
+  <text x="572" y="308" font-size="12" fill="#334155">• 上下文管理：子 Agent 视为无状态函数调用，主 Agent 将全局计划写入外部 Memory</text>
+  <text x="572" y="330" font-size="12" fill="#6B21A8" font-weight="bold">• 核心能力：按任务复杂度动态调整子 Agent 扇出规模（简单任务1个，复杂研究10+个）</text>
+  <text x="572" y="352" font-size="12" fill="#334155">• 适用场景：广度优先搜索、多源异构数据并行解析与独立交叉核验</text>
+  <text x="572" y="376" font-size="11" fill="#64748B">代价：主 Agent 的委派契约 (Delegation Contract) 清晰度直接决定系统上限</text>
+</svg>

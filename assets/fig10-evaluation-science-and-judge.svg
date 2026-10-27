@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 400" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="400" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 10：智能体评测科学（τ-bench 的 pass^k 可靠性悬崖与 Agent-as-a-Judge 轨迹审计）</text>
+
+  <rect x="28" y="58" width="500" height="316" rx="10" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1.5"/>
+  <text x="278" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#9F1239">1. τ-bench 揭示的残酷真相：pass@k 与 pass^k 的天壤之别</text>
+
+  <rect x="48" y="104" width="460" height="142" rx="6" fill="#FFFFFF" stroke="#FECDD3"/>
+  <text x="64" y="128" font-size="12" font-weight="bold" fill="#881337">• 竞赛指标 pass@k（尝试 k 次只要成功 1 次就算过，常用于代码刷榜）：</text>
+  <rect x="64" y="138" width="380" height="18" rx="3" fill="#BBF7D0"/><text x="452" y="152" font-size="11" font-weight="bold" fill="#15803D">88%</text>
+  <text x="64" y="176" font-size="12" font-weight="bold" fill="#991B1B">• 生产指标 pass^k（同一任务连续跑 k 次必须全部成功才算可靠）：</text>
+  <text x="64" y="196" font-size="11" fill="#334155">pass^1 (跑1次):</text><rect x="156" y="184" width="240" height="14" rx="3" fill="#93C5FD"/><text x="404" y="196" font-size="11" fill="#1E40AF">~65%</text>
+  <text x="64" y="216" font-size="11" fill="#334155">pass^4 (连成4次):</text><rect x="156" y="204" width="130" height="14" rx="3" fill="#FCD34D"/><text x="294" y="216" font-size="11" fill="#92400E">~36%</text>
+  <text x="64" y="236" font-size="11" fill="#334155">pass^8 (连成8次):</text><rect x="156" y="224" width="75" height="14" rx="3" fill="#F87171"/><text x="240" y="236" font-size="11" font-weight="bold" fill="#B91C1C">&lt; 25% (可靠性悬崖)</text>
+
+  <rect x="48" y="258" width="460" height="100" rx="6" fill="#FFFFFF" stroke="#FECDD3"/>
+  <text x="64" y="280" font-size="12" font-weight="bold" fill="#9F1239">为什么生产级 Agent 系统必须考核 pass^k？</text>
+  <text x="64" y="302" font-size="11" fill="#334155">假设单次完整工作流成功率为 p，连续 k 次零失误的概率为 p^k。真实业务不能靠</text>
+  <text x="64" y="322" font-size="11" fill="#334155">“抽样 10 次撞大运成功 1 次”上线。将确定性逻辑沉入 MCP 工具并用状态机锁死</text>
+  <text x="64" y="342" font-size="11" fill="#334155">路由边界，核心目的就是消除随机采样方差，把 pass^k 曲线拉平。</text>
+
+  <rect x="556" y="58" width="496" height="316" rx="10" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.5"/>
+  <text x="804" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#065F46">2. 评测范式升级：LLM-as-a-Judge vs. Agent-as-a-Judge</text>
+
+  <rect x="576" y="104" width="456" height="112" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+  <text x="592" y="128" font-size="13" font-weight="bold" fill="#B91C1C">传统 LLM-as-a-Judge（只看最终文本的“黑盒阅卷”）</text>
+  <text x="592" y="150" font-size="11" fill="#334155">• 输入：被测模型的最终回复文本 | 输出：1~10 分主观打分</text>
+  <text x="592" y="170" font-size="11" fill="#334155">• 致命盲区：偏爱长篇大论与排版漂亮的错误回答（Verbosity Bias）；</text>
+  <text x="592" y="190" font-size="11" fill="#334155">  无法发现被测 Agent 在中间步骤伪造工具返回或跳过了必检安全红线。</text>
+
+  <rect x="576" y="230" width="456" height="128" rx="6" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
+  <text x="592" y="254" font-size="13" font-weight="bold" fill="#047857">现代 Agent-as-a-Judge（带工具箱与规则库的“全轨迹审计员”）</text>
+  <text x="592" y="276" font-size="11" fill="#334155">• 输入：完整执行轨迹 (Thought + Tool Call + Observation + State Diff)</text>
+  <text x="592" y="296" font-size="11" fill="#334155">• 独立工具验证：Judge 自己调用编译器、数据库查询与确定性求解器核验每一步</text>
+  <text x="592" y="316" font-size="11" fill="#065F46" font-weight="bold">• 细粒度归因：精确指出在哪一个时间步、哪一次工具调用违反了哪一条契约</text>
+  <text x="592" y="338" font-size="11" fill="#334155">• 实证表现（Zhuge et al., 2024）：与人类专家评审一致性达 90%+，成本降低 97%</text>
+</svg>

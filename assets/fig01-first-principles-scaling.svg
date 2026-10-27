@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 420" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="420" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 1：多智能体第一性原理（注意力稀释、串联误差指数衰减与任务适用相图）</text>
+
+  <rect x="24" y="56" width="332" height="340" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="190" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E3A8A">定律 1：上下文隔离抵抗注意力稀释</text>
+  <rect x="44" y="102" width="292" height="72" rx="6" fill="#FEE2E2" stroke="#F87171"/>
+  <text x="190" y="124" text-anchor="middle" font-size="12" font-weight="bold" fill="#991B1B">单体超长上下文 (Monolithic 1M Prompt)</text>
+  <text x="190" y="144" text-anchor="middle" font-size="11" fill="#7F1D1D">Attention 权重在 L 个 Token 上被平摊稀释</text>
+  <text x="190" y="162" text-anchor="middle" font-size="11" fill="#7F1D1D">Lost-in-the-Middle 效应 + 跨子任务特征串扰</text>
+  <text x="190" y="196" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E40AF">↓ 独立子空间切分 (L → K × L/K) ↓</text>
+  <rect x="44" y="210" width="90" height="58" rx="6" fill="#DBEAFE" stroke="#2563EB"/>
+  <text x="89" y="236" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">Subagent 1</text>
+  <text x="89" y="254" text-anchor="middle" font-size="10" fill="#1E3A8A">局部高信噪比</text>
+  <rect x="145" y="210" width="90" height="58" rx="6" fill="#DBEAFE" stroke="#2563EB"/>
+  <text x="190" y="236" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">Subagent 2</text>
+  <text x="190" y="254" text-anchor="middle" font-size="10" fill="#1E3A8A">独立工具沙箱</text>
+  <rect x="246" y="210" width="90" height="58" rx="6" fill="#DBEAFE" stroke="#2563EB"/>
+  <text x="291" y="236" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">Subagent K</text>
+  <text x="291" y="254" text-anchor="middle" font-size="10" fill="#1E3A8A">只传摘要结论</text>
+  <rect x="44" y="284" width="292" height="94" rx="6" fill="#FFFFFF" stroke="#BFDBFE"/>
+  <text x="56" y="306" font-size="12" font-weight="bold" fill="#1E3A8A">信息瓶颈本质（Working Memory 压缩）：</text>
+  <text x="56" y="328" font-size="11" fill="#334155">子 Agent 在独立沙箱内消耗数万 Token 搜索试错，</text>
+  <text x="56" y="348" font-size="11" fill="#334155">向主 Agent 仅返回百字级结构化结论，实现有损降噪。</text>
+
+  <rect x="374" y="56" width="332" height="340" rx="10" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="540" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#92400E">定律 2：串联误差累积 vs. 校验恢复</text>
+  <rect x="394" y="104" width="292" height="148" rx="6" fill="#FFFFFF" stroke="#FDE68A"/>
+  <line x1="426" y1="224" x2="662" y2="224" stroke="#64748B" stroke-width="1.5"/>
+  <line x1="426" y1="224" x2="426" y2="120" stroke="#64748B" stroke-width="1.5"/>
+  <text x="418" y="128" text-anchor="end" font-size="10" fill="#475569">1.0</text>
+  <text x="418" y="224" text-anchor="end" font-size="10" fill="#475569">0.0</text>
+  <text x="544" y="242" text-anchor="middle" font-size="10" fill="#475569">串联交接步数 T (单步成功率 p=0.85)</text>
+  <path d="M 426 135 Q 510 142 650 148" fill="none" stroke="#16A34A" stroke-width="2.5"/>
+  <text x="565" y="136" font-size="11" font-weight="bold" fill="#15803D">带逐步 Verifier 校验: R ≈ 0.92</text>
+  <path d="M 426 135 Q 500 185 650 214" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <text x="545" y="202" font-size="11" font-weight="bold" fill="#B91C1C">无校验裸链: P = p^T → 0.19</text>
+  <rect x="394" y="268" width="292" height="110" rx="6" fill="#FFFFFF" stroke="#FDE68A"/>
+  <text x="406" y="290" font-size="12" font-weight="bold" fill="#92400E">孔多塞陪审团定理失效与级联崩溃：</text>
+  <text x="406" y="312" font-size="11" fill="#334155">• 串联 10 步且单步 p=0.85 时，裸链成功率仅 0.85¹⁰=19.7%</text>
+  <text x="406" y="332" font-size="11" fill="#334155">• 同源大模型共享预训练盲区，误差高度正相关</text>
+  <text x="406" y="352" font-size="11" fill="#334155">• 结论：没有确定性 Verifier 拦截的多 Agent 必败</text>
+
+  <rect x="724" y="56" width="332" height="340" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="890" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#065F46">定律 3：什么时候该用多智能体？</text>
+  <rect x="744" y="104" width="292" height="148" rx="6" fill="#FFFFFF" stroke="#BBF7D0"/>
+  <text x="890" y="126" text-anchor="middle" font-size="12" font-weight="bold" fill="#047857">任务可并行度 vs. 状态耦合度相图</text>
+  <rect x="758" y="138" width="126" height="46" rx="4" fill="#FEE2E2" stroke="#F87171"/>
+  <text x="821" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#991B1B">高耦合 + 强顺序依赖</text>
+  <text x="821" y="174" text-anchor="middle" font-size="10" fill="#7F1D1D">优选：单体强推理模型</text>
+  <rect x="896" y="138" width="126" height="46" rx="4" fill="#DCFCE7" stroke="#22C55E"/>
+  <text x="959" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803D">高扇出 + 子任务解耦</text>
+  <text x="959" y="174" text-anchor="middle" font-size="10" fill="#166534">优选：主从并行 Subagents</text>
+  <rect x="758" y="194" width="264" height="46" rx="4" fill="#DBEAFE" stroke="#3B82F6"/>
+  <text x="890" y="214" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">异构模态工具集 + 需生成与考评分离</text>
+  <text x="890" y="230" text-anchor="middle" font-size="10" fill="#1E3A8A">优选：显式图状态机 (StateGraph) + 独立 Judge</text>
+  <rect x="744" y="268" width="292" height="110" rx="6" fill="#FFFFFF" stroke="#BBF7D0"/>
+  <text x="756" y="290" font-size="12" font-weight="bold" fill="#065F46">Anthropic 生产实测经济学 (2025.06)：</text>
+  <text x="756" y="312" font-size="11" fill="#334155">• 广度优先复杂搜索：MAS 比单 Opus 4 提升 +90.2%</text>
+  <text x="756" y="332" font-size="11" fill="#334155">• Token 开销倍率：MAS 消耗约为单轮对话的 15 倍</text>
+  <text x="756" y="352" font-size="11" fill="#334155">• 原则：强共享上下文编码任务切勿盲目拆多 Agent</text>
+</svg>

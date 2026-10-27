@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 440" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="440" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 3：多智能体六大通信拓扑图谱与复杂度对比</text>
+
+  <rect x="24" y="56" width="332" height="172" rx="8" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="190" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#0F172A">1. 线性流水线 (Chain / Pipeline)</text>
+  <circle cx="90" cy="124" r="18" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/><text x="90" y="128" text-anchor="middle" font-size="11" fill="#1E40AF">S1</text>
+  <line x1="108" y1="124" x2="162" y2="124" stroke="#2563EB" stroke-width="2"/>
+  <circle cx="180" cy="124" r="18" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/><text x="180" y="128" text-anchor="middle" font-size="11" fill="#1E40AF">S2</text>
+  <line x1="198" y1="124" x2="252" y2="124" stroke="#2563EB" stroke-width="2"/>
+  <circle cx="270" cy="124" r="18" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/><text x="270" y="128" text-anchor="middle" font-size="11" fill="#1E40AF">S3</text>
+  <text x="40" y="172" font-size="11" fill="#334155">• 通信复杂度：O(N) | 延迟：O(N) 串行累加</text>
+  <text x="40" y="192" font-size="11" fill="#334155">• 代表框架：MetaGPT SOP / OpenAI Swarm Handoffs</text>
+  <text x="40" y="212" font-size="11" fill="#B91C1C">• 缺陷：上游一处出错，下游全链路级联放大</text>
+
+  <rect x="374" y="56" width="332" height="172" rx="8" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="540" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#1E40AF">2. 星型总控 (Star / Orchestrator-Worker)</text>
+  <rect x="485" y="94" width="110" height="28" rx="5" fill="#2563EB"/><text x="540" y="112" text-anchor="middle" font-size="11" font-weight="bold" fill="#FFFFFF">Orchestrator</text>
+  <circle cx="440" cy="146" r="15" fill="#DBEAFE" stroke="#2563EB"/><text x="440" y="150" text-anchor="middle" font-size="10" fill="#1E40AF">W1</text>
+  <circle cx="540" cy="146" r="15" fill="#DBEAFE" stroke="#2563EB"/><text x="540" y="150" text-anchor="middle" font-size="10" fill="#1E40AF">W2</text>
+  <circle cx="640" cy="146" r="15" fill="#DBEAFE" stroke="#2563EB"/><text x="640" y="150" text-anchor="middle" font-size="10" fill="#1E40AF">W3</text>
+  <line x1="515" y1="122" x2="450" y2="135" stroke="#2563EB" stroke-width="1.5"/>
+  <line x1="540" y1="122" x2="540" y2="131" stroke="#2563EB" stroke-width="1.5"/>
+  <line x1="565" y1="122" x2="630" y2="135" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="390" y="178" font-size="11" fill="#334155">• 通信复杂度：O(N) | 延迟：O(1) 并行扇出</text>
+  <text x="390" y="196" font-size="11" fill="#334155">• 代表框架：Anthropic Research / LangGraph Supervisor</text>
+  <text x="390" y="214" font-size="11" fill="#15803D">• 优势：Worker 上下文完全隔离，由总控统一归并</text>
+
+  <rect x="724" y="56" width="332" height="172" rx="8" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="890" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#0F172A">3. 层级树状团队 (Hierarchical Tree)</text>
+  <circle cx="890" cy="102" r="13" fill="#1E293B"/><text x="890" y="106" text-anchor="middle" font-size="9" fill="#FFFFFF">Root</text>
+  <circle cx="830" cy="134" r="13" fill="#DBEAFE" stroke="#2563EB"/><text x="830" y="138" text-anchor="middle" font-size="9" fill="#1E40AF">M1</text>
+  <circle cx="950" cy="134" r="13" fill="#DBEAFE" stroke="#2563EB"/><text x="950" y="138" text-anchor="middle" font-size="9" fill="#1E40AF">M2</text>
+  <line x1="879" y1="109" x2="841" y2="127" stroke="#475569" stroke-width="1.5"/>
+  <line x1="901" y1="109" x2="939" y2="127" stroke="#475569" stroke-width="1.5"/>
+  <text x="740" y="172" font-size="11" fill="#334155">• 通信复杂度：O(N) | 延迟：O(log N)</text>
+  <text x="740" y="192" font-size="11" fill="#334155">• 代表框架：Hierarchical CrewAI / AutoGen Nested</text>
+  <text x="740" y="212" font-size="11" fill="#334155">• 适用：大规模分层任务（总控→领域主管→执行器）</text>
+
+  <rect x="24" y="246" width="332" height="172" rx="8" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1.5"/>
+  <text x="190" y="270" text-anchor="middle" font-size="14" font-weight="bold" fill="#9F1239">4. 全连接辩论网 (Mesh / All-to-All Debate)</text>
+  <circle cx="130" cy="306" r="14" fill="#FECDD3" stroke="#E11D48"/><circle cx="250" cy="306" r="14" fill="#FECDD3" stroke="#E11D48"/>
+  <circle cx="130" cy="346" r="14" fill="#FECDD3" stroke="#E11D48"/><circle cx="250" cy="346" r="14" fill="#FECDD3" stroke="#E11D48"/>
+  <line x1="144" y1="306" x2="236" y2="306" stroke="#E11D48"/><line x1="144" y1="346" x2="236" y2="346" stroke="#E11D48"/>
+  <line x1="130" y1="320" x2="130" y2="332" stroke="#E11D48"/><line x1="250" y1="320" x2="250" y2="332" stroke="#E11D48"/>
+  <line x1="142" y1="314" x2="238" y2="338" stroke="#E11D48"/><line x1="238" y1="314" x2="142" y2="338" stroke="#E11D48"/>
+  <text x="40" y="374" font-size="11" fill="#881337">• 通信复杂度：O(R · N²)（R 为辩论轮数）</text>
+  <text x="40" y="392" font-size="11" fill="#334155">• 代表：MIT MAD / Society of Mind</text>
+  <text x="40" y="410" font-size="11" fill="#B91C1C">• 风险：N&gt;4 时上下文呈平方膨胀，易触发群体盲从</text>
+
+  <rect x="374" y="246" width="332" height="172" rx="8" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="540" y="270" text-anchor="middle" font-size="14" font-weight="bold" fill="#92400E">5. 共享黑板与事件总线 (Blackboard / Actor)</text>
+  <rect x="424" y="288" width="232" height="30" rx="4" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="540" y="308" text-anchor="middle" font-size="11" font-weight="bold" fill="#78350F">Shared Blackboard / Event Bus (Pub/Sub)</text>
+  <text x="540" y="344" text-anchor="middle" font-size="11" fill="#92400E">↑ 异步发布/订阅状态变更 ↑</text>
+  <text x="390" y="374" font-size="11" fill="#334155">• 通信复杂度：O(N) 读写解耦 | 异步非阻塞</text>
+  <text x="390" y="392" font-size="11" fill="#334155">• 代表：AutoGen v0.4 (AG2) Actor Runtime</text>
+  <text x="390" y="410" font-size="11" fill="#15803D">• 优势：支持长周期挂起与外部人工审批事件唤醒</text>
+
+  <rect x="724" y="246" width="332" height="172" rx="8" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.5"/>
+  <text x="890" y="270" text-anchor="middle" font-size="14" font-weight="bold" fill="#065F46">6. 动态裁剪有向无环图 (Pruned DAG)</text>
+  <circle cx="810" cy="306" r="13" fill="#D1FAE5" stroke="#059669"/><text x="810" y="310" text-anchor="middle" font-size="9" fill="#065F46">V1</text>
+  <circle cx="890" cy="296" r="13" fill="#FEE2E2" stroke="#EF4444" stroke-dasharray="3,2"/><text x="890" y="300" text-anchor="middle" font-size="9" fill="#991B1B">剪除</text>
+  <circle cx="890" cy="336" r="13" fill="#D1FAE5" stroke="#059669"/><text x="890" y="340" text-anchor="middle" font-size="9" fill="#065F46">V3</text>
+  <circle cx="970" cy="316" r="13" fill="#10B981"/><text x="970" y="320" text-anchor="middle" font-size="9" fill="#FFFFFF">Judge</text>
+  <line x1="823" y1="312" x2="877" y2="332" stroke="#059669" stroke-width="1.8"/>
+  <line x1="903" y1="332" x2="957" y2="320" stroke="#059669" stroke-width="1.8"/>
+  <text x="740" y="374" font-size="11" fill="#334155">• 通信复杂度：O(|E_active|) 稀疏自适应</text>
+  <text x="740" y="392" font-size="11" fill="#334155">• 代表：DyLAN / AgentPrune (ICLR 25) / MacNet</text>
+  <text x="740" y="410" font-size="11" fill="#15803D">• 优势：按任务难度在线剪枝冗余边，阻断幻觉传播</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 400" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="400" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 5：多智能体辩论（MAD）的三大群体病理学与证据锚定裁决方案</text>
+
+  <rect x="28" y="58" width="500" height="316" rx="10" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1.5"/>
+  <text x="278" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#9F1239">1. 为什么自由辩论常常越辩越错？（三大群体病理）</text>
+
+  <rect x="48" y="102" width="460" height="82" rx="6" fill="#FFFFFF" stroke="#FECDD3"/>
+  <text x="64" y="124" font-size="13" font-weight="bold" fill="#B91C1C">病理一：阿希从众效应与阿谀奉承 (Conformity &amp; Sycophancy)</text>
+  <text x="64" y="144" font-size="11" fill="#334155">Round 1: 领域专家 Agent A 答对 (✓)，但两个通用 Agent B、C 犯了相同错误 (✗)</text>
+  <text x="64" y="164" font-size="11" fill="#991B1B" font-weight="bold">Round 2: Agent A 看到多数派反对自己，触发 RLHF 迎合偏好，主动改错答案向 B、C 妥协</text>
+
+  <rect x="48" y="196" width="460" height="78" rx="6" fill="#FFFFFF" stroke="#FECDD3"/>
+  <text x="64" y="218" font-size="13" font-weight="bold" fill="#B91C1C">病理二：思维退化与自我强化幻觉 (Degeneration-of-Thought)</text>
+  <text x="64" y="238" font-size="11" fill="#334155">一旦首轮生成了看似自洽的错误前提，后续反思轮次只会围绕错误前提编造更多</text>
+  <text x="64" y="258" font-size="11" fill="#334155">细节来合理化初始幻觉，信噪比随辩论轮数增加单调递减。</text>
+
+  <rect x="48" y="286" width="460" height="72" rx="6" fill="#FFFFFF" stroke="#FECDD3"/>
+  <text x="64" y="308" font-size="13" font-weight="bold" fill="#B91C1C">病理三：同源基座的伪多样性 (Homogeneous Prior Echo Chamber)</text>
+  <text x="64" y="328" font-size="11" fill="#334155">用同一个基座模型套 3 个不同角色 Prompt，本质仍在同一预训练先验分布内采样，</text>
+  <text x="64" y="346" font-size="11" fill="#334155">遇到训练语料盲区时 3 个角色会整齐划一地犯同一个错。</text>
+
+  <rect x="556" y="58" width="496" height="316" rx="10" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.5"/>
+  <text x="804" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#065F46">2. 现代破局方案：从多数票决转向证据等级裁决</text>
+
+  <rect x="576" y="102" width="456" height="82" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+  <text x="592" y="124" font-size="13" font-weight="bold" fill="#047857">对策一：非对称证据锚定 (Evidence-Grounded Adjudication)</text>
+  <text x="592" y="144" font-size="11" fill="#334155">• 严禁按人头简单多数投票，引入不参与生成的独立裁决器 (Arbiter / Judge)</text>
+  <text x="592" y="164" font-size="11" fill="#065F46" font-weight="bold">• 权重法则：确定性工具输出 (L1) &gt; 权威文献/数据库检索 (L2) &gt; 模型自由推演 (L3)</text>
+
+  <rect x="576" y="196" width="456" height="78" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+  <text x="592" y="218" font-size="13" font-weight="bold" fill="#047857">对策二：盲评独立采样 + 反事实红队 (Blind Sampling &amp; Red Team)</text>
+  <text x="592" y="238" font-size="11" fill="#334155">• 首轮各子 Agent 完全隔离并行推理，禁止互相查看草稿，消除首轮锚定效应</text>
+  <text x="592" y="258" font-size="11" fill="#334155">• 专设 Red-Team Verifier，职责是调用验证工具找出候选方案违反硬约束的反例</text>
+
+  <rect x="576" y="286" width="456" height="72" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+  <text x="592" y="308" font-size="13" font-weight="bold" fill="#047857">对策三：复杂度自适应路由 (MDAgents Complexity Routing)</text>
+  <text x="592" y="328" font-size="11" fill="#334155">• 常规无冲突任务直接走单 Agent + 确定性规则校验快速通道</text>
+  <text x="592" y="346" font-size="11" fill="#334155">• 仅当多源特征出现显式矛盾或置信度低于阈值时，才拉起多专家仲裁图</text>
+</svg>

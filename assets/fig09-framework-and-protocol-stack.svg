@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 430" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="430" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 9：现代智能体双层开放协议栈（Google A2A 水平协同协议 + Anthropic MCP 垂直工具协议）</text>
+
+  <!-- Top Layer: A2A Horizontal -->
+  <rect x="28" y="56" width="1024" height="168" rx="10" fill="#EFF6FF" stroke="#60A5FA" stroke-width="1.5"/>
+  <text x="540" y="82" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E3A8A">水平层：Agent-to-Agent (A2A) 跨智能体协同协议（不透明黑盒委派、长任务生命周期与能力发现）</text>
+
+  <rect x="52" y="98" width="240" height="108" rx="8" fill="#1E40AF"/>
+  <text x="172" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">Client / Lead Orchestrator</text>
+  <text x="172" y="146" text-anchor="middle" font-size="11" fill="#BFDBFE">• 读取远端 /.well-known/agent.json</text>
+  <text x="172" y="166" text-anchor="middle" font-size="11" fill="#BFDBFE">• 派发 Task 并订阅 SSE 状态流</text>
+  <text x="172" y="186" text-anchor="middle" font-size="11" fill="#93C5FD">• 无需获知对方内部 Prompt 与工具</text>
+
+  <text x="416" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="#1D4ED8">── JSON-RPC + SSE 流式状态 ──►</text>
+  <text x="416" y="148" text-anchor="middle" font-size="10" fill="#334155">[submitted → working → input-required → completed]</text>
+  <text x="416" y="172" text-anchor="middle" font-size="11" font-weight="bold" fill="#047857">◄── 交付标准化 Artifact 载荷 ──</text>
+
+  <rect x="540" y="98" width="228" height="108" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="654" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E40AF">Remote Specialist Agent A</text>
+  <text x="654" y="146" text-anchor="middle" font-size="11" fill="#334155">• 独立推理循环与私有记忆库</text>
+  <text x="654" y="166" text-anchor="middle" font-size="11" fill="#334155">• 缺少信息时返回 input-required</text>
+  <text x="654" y="186" text-anchor="middle" font-size="11" fill="#1D4ED8">• 对外暴露 Agent Card 技能声明</text>
+
+  <rect x="796" y="98" width="228" height="108" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="910" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E40AF">Remote Verifier Agent B</text>
+  <text x="910" y="146" text-anchor="middle" font-size="11" fill="#334155">• 跨团队/跨语言独立微服务</text>
+  <text x="910" y="166" text-anchor="middle" font-size="11" fill="#334155">• 接收待审方案并返回审计报告</text>
+  <text x="910" y="186" text-anchor="middle" font-size="11" fill="#1D4ED8">• 支持 OAuth/API Key 企业鉴权</text>
+
+  <!-- Bottom Layer: MCP Vertical -->
+  <rect x="28" y="244" width="1024" height="164" rx="10" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.5"/>
+  <text x="540" y="270" text-anchor="middle" font-size="15" font-weight="bold" fill="#065F46">垂直层：Model Context Protocol (MCP) 智能体对工具/数据源协议（确定性函数与资源挂载）</text>
+
+  <rect x="52" y="288" width="296" height="100" rx="8" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
+  <text x="200" y="312" text-anchor="middle" font-size="13" font-weight="bold" fill="#047857">MCP Primitive 1: Tools (模型可控函数)</text>
+  <text x="68" y="334" font-size="11" fill="#334155">• 严格 JSON Schema 入参/出参定义</text>
+  <text x="68" y="354" font-size="11" fill="#334155">• 封装确定性数值计算、编译器、求解器与</text>
+  <text x="68" y="372" font-size="11" fill="#334155">  外部 API，消除大模型心算幻觉</text>
+
+  <rect x="392" y="288" width="296" height="100" rx="8" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
+  <text x="540" y="312" text-anchor="middle" font-size="13" font-weight="bold" fill="#047857">MCP Primitive 2: Resources (只读上下文源)</text>
+  <text x="408" y="334" font-size="11" fill="#334155">• 类 URI 寻址（如 db://schema 或 file://spec）</text>
+  <text x="408" y="354" font-size="11" fill="#334155">• 为 Agent 按需挂载结构化文档、数据库视图</text>
+  <text x="408" y="372" font-size="11" fill="#334155">  与实时监控快照，支持变更订阅</text>
+
+  <rect x="732" y="288" width="292" height="100" rx="8" fill="#FFFFFF" stroke="#10B981" stroke-width="1.5"/>
+  <text x="878" y="312" text-anchor="middle" font-size="13" font-weight="bold" fill="#047857">MCP Primitive 3: Prompts &amp; Sampling</text>
+  <text x="748" y="334" font-size="11" fill="#334155">• 服务端预置标准化领域工作流模版</text>
+  <text x="748" y="354" font-size="11" fill="#334155">• 传输层支持本地 stdio 进程管道与远端</text>
+  <text x="748" y="372" font-size="11" fill="#334155">  Streamable HTTP，一次编写多框架复用</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 390" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="390" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 4：动态智能体网络裁剪原理（DyLAN 逆向贡献度评分与 AgentPrune 时空掩码）</text>
+
+  <!-- Left: Spatial-Temporal Graph -->
+  <rect x="28" y="58" width="500" height="308" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="278" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E3A8A">1. 多智能体时空通信图 G = (V, E_spatial, E_temporal)</text>
+  
+  <text x="118" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E40AF">时间步 t - 1 (Round 1)</text>
+  <text x="398" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E40AF">时间步 t (Round 2)</text>
+
+  <circle cx="118" cy="154" r="22" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/><text x="118" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">A₁⁽ᵗ⁻¹⁾</text>
+  <circle cx="118" cy="224" r="22" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/><text x="118" y="228" text-anchor="middle" font-size="11" font-weight="bold" fill="#991B1B">A₂⁽ᵗ⁻¹⁾</text>
+  <circle cx="118" cy="294" r="22" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/><text x="118" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">A₃⁽ᵗ⁻¹⁾</text>
+
+  <circle cx="398" cy="154" r="22" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/><text x="398" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">A₁⁽ᵗ⁾</text>
+  <circle cx="398" cy="224" r="22" fill="#F1F5F9" stroke="#94A3B8" stroke-dasharray="4,2"/><text x="398" y="228" text-anchor="middle" font-size="11" fill="#64748B">已裁剪</text>
+  <circle cx="398" cy="294" r="22" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/><text x="398" y="298" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">A₃⁽ᵗ⁾</text>
+
+  <!-- Temporal Edges -->
+  <line x1="140" y1="154" x2="376" y2="154" stroke="#2563EB" stroke-width="2"/>
+  <line x1="140" y1="294" x2="376" y2="294" stroke="#2563EB" stroke-width="2"/>
+  <line x1="140" y1="224" x2="376" y2="164" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <line x1="140" y1="224" x2="376" y2="284" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <text x="258" y="144" text-anchor="middle" font-size="11" fill="#1D4ED8">保留高价值时序边 (m_ij = 1)</text>
+  <text x="258" y="218" text-anchor="middle" font-size="11" font-weight="bold" fill="#DC2626">✖ 剪除噪声/幻觉传播边 (m_ij = 0)</text>
+
+  <text x="48" y="346" font-size="11" fill="#334155">• 空间边 E_spatial：同一轮内 Agent 之间的依赖调用</text>
+  <text x="308" y="346" font-size="11" fill="#334155">• 时间边 E_temporal：跨轮次历史消息继承</text>
+
+  <!-- Right: Mathematical Formulation -->
+  <rect x="556" y="58" width="496" height="308" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="804" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#065F46">2. 三大前沿图优化算法核心机制对比</text>
+
+  <rect x="576" y="102" width="456" height="76" rx="6" fill="#FFFFFF" stroke="#BBF7D0"/>
+  <text x="592" y="124" font-size="13" font-weight="bold" fill="#15803D">① DyLAN (Tsinghua, COLM 2024)：Agent Importance Score</text>
+  <text x="592" y="144" font-size="11" fill="#334155">• 前向传播阶段允许多个专职 Agent 交互，由 Ranker 评估谁的提议被最终采纳</text>
+  <text x="592" y="164" font-size="11" fill="#334155">• 逆向回传贡献度分数 I_i，自动剔除低贡献节点，组装任务专属最优小队</text>
+
+  <rect x="576" y="190" width="456" height="76" rx="6" fill="#FFFFFF" stroke="#BBF7D0"/>
+  <text x="592" y="212" font-size="13" font-weight="bold" fill="#15803D">② AgentPrune (ICLR 2025)：低秩稀疏通信掩码学习</text>
+  <text x="592" y="232" font-size="11" fill="#334155">• 对邻接矩阵学习连续可微掩码 M ∈ [0,1]^(N×N)，执行一次性 (One-shot) 剪枝</text>
+  <text x="592" y="252" font-size="11" fill="#334155">• 裁掉 50%~70% 冗余通信边后准确率反升，同时具备极强的抗 Prompt 注入鲁棒性</text>
+
+  <rect x="576" y="278" width="456" height="72" rx="6" fill="#FFFFFF" stroke="#BBF7D0"/>
+  <text x="592" y="300" font-size="13" font-weight="bold" fill="#15803D">③ MacNet (ICLR 2025)：有向无环图 (DAG) 千级节点扩展定律</text>
+  <text x="592" y="320" font-size="11" fill="#334155">• 证明每个节点只接收局部拓扑邻居摘要时，协作规模可突破 1,000 个 Agent</text>
+  <text x="592" y="338" font-size="11" fill="#334155">• 发现小世界拓扑（Small-World DAG）在推理多样性与收敛速度上显著优于全连接图</text>
+</svg>

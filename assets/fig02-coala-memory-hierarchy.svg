@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 420" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="420" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 2：单智能体认知架构（Princeton CoALA 模型）与三级记忆存储层次</text>
+
+  <!-- Left: Memory Hierarchy -->
+  <rect x="28" y="58" width="480" height="336" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="268" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E3A8A">1. 类操作系统的三级记忆架构 (Memory Hierarchy)</text>
+
+  <rect x="48" y="104" width="440" height="72" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="64" y="128" font-size="13" font-weight="bold" fill="#1E40AF">L1 寄存器 / 高速缓存：Working Memory (Active Context)</text>
+  <text x="64" y="148" font-size="12" fill="#334155">保存当前目标、最近几步观察与局部草稿；容量受限且贵，需主动淘汰压缩</text>
+  <text x="64" y="166" font-size="11" fill="#1D4ED8">对应操作：Context Pruning / Summary Handoff</text>
+
+  <rect x="48" y="190" width="440" height="86" rx="8" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5"/>
+  <text x="64" y="214" font-size="13" font-weight="bold" fill="#1E40AF">L2 持久内存：Long-Term Memory (三大长期记忆库)</text>
+  <text x="64" y="234" font-size="12" fill="#334155">• 情景记忆 (Episodic)：历史运行轨迹、失败教训日志 (Reflexion 经验池)</text>
+  <text x="64" y="252" font-size="12" fill="#334155">• 语义记忆 (Semantic)：领域事实库、知识图谱、向量检索库 (RAG)</text>
+  <text x="64" y="270" font-size="12" fill="#334155">• 程序记忆 (Procedural)：模型权重 + 固化代码脚本/Skill 工具集</text>
+
+  <rect x="48" y="290" width="440" height="84" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1.5"/>
+  <text x="64" y="314" font-size="13" font-weight="bold" fill="#92400E">L3 多智能体共享总线：Shared Blackboard / State Store</text>
+  <text x="64" y="336" font-size="12" fill="#334155">多 Agent 协同的唯一真相源 (Single Source of Truth)：各 Agent 严禁私下</text>
+  <text x="64" y="356" font-size="12" fill="#334155">篡改全局状态，必须通过受版本控制的 State Reducer 提交状态变更</text>
+
+  <!-- Right: Reasoning & Action Loop -->
+  <rect x="536" y="58" width="516" height="336" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5"/>
+  <text x="794" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#065F46">2. 四代规划与推理范式演进 (Planning Loops)</text>
+
+  <rect x="556" y="104" width="228" height="122" rx="8" fill="#FFFFFF" stroke="#22C55E"/>
+  <text x="670" y="128" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803D">① ReAct (边想边做)</text>
+  <text x="570" y="150" font-size="11" fill="#334155">Thought → Act → Obs 循环</text>
+  <text x="570" y="170" font-size="11" fill="#334155">• 优点：灵活适应环境反馈</text>
+  <text x="570" y="190" font-size="11" fill="#B91C1C">• 缺点：短视贪心，每步重发</text>
+  <text x="570" y="208" font-size="11" fill="#B91C1C">  全量前缀导致 Token 昂贵</text>
+
+  <rect x="804" y="104" width="228" height="122" rx="8" fill="#FFFFFF" stroke="#22C55E"/>
+  <text x="918" y="128" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803D">② Reflexion (语言强化学习)</text>
+  <text x="818" y="150" font-size="11" fill="#334155">Actor + Evaluator + Self-Reflection</text>
+  <text x="818" y="170" font-size="11" fill="#334155">• 将失败报错转写为自然语言</text>
+  <text x="818" y="190" font-size="11" fill="#334155">  教训存入 Episodic 记忆</text>
+  <text x="818" y="208" font-size="11" fill="#15803D">• 下一轮带着教训重跑防重犯</text>
+
+  <rect x="556" y="244" width="228" height="130" rx="8" fill="#FFFFFF" stroke="#22C55E"/>
+  <text x="670" y="268" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803D">③ ReWOO (规划与执行解耦)</text>
+  <text x="570" y="290" font-size="11" fill="#334155">Planner → Worker → Solver</text>
+  <text x="570" y="310" font-size="11" fill="#334155">• 一次性生成带占位符 (#E1,#E2)</text>
+  <text x="570" y="330" font-size="11" fill="#334155">  的完整工具调用 DAG 图</text>
+  <text x="570" y="350" font-size="11" fill="#15803D">• 节省约 5 倍中间推理 Token</text>
+
+  <rect x="804" y="244" width="228" height="130" rx="8" fill="#FFFFFF" stroke="#22C55E"/>
+  <text x="918" y="268" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803D">④ LATS (蒙特卡洛树搜索)</text>
+  <text x="818" y="290" font-size="11" fill="#334155">MCTS + 价值函数回溯</text>
+  <text x="818" y="310" font-size="11" fill="#334155">• 支持对多条工具动作分支做</text>
+  <text x="818" y="330" font-size="11" fill="#334155">  UCB 探索与状态回滚</text>
+  <text x="818" y="350" font-size="11" fill="#B91C1C">• 需外部环境支持状态重置</text>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 410" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="410" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 8：分布式多智能体容错工程（Context Envelope、Checkpoint 状态树与 Saga 逆向补偿）</text>
+
+  <!-- Left: Context Envelope -->
+  <rect x="24" y="56" width="340" height="330" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="194" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E3A8A">1. 不可变上下文信封 (Context Envelope)</text>
+  <rect x="42" y="102" width="304" height="196" rx="6" fill="#0F172A"/>
+  <text x="56" y="126" font-family="Consolas, monospace" font-size="11" fill="#38BDF8">{</text>
+  <text x="68" y="146" font-family="Consolas, monospace" font-size="11" fill="#A7F3D0">"trace_id": "tr_9f82a1c0",</text>
+  <text x="68" y="166" font-family="Consolas, monospace" font-size="11" fill="#FDE047">"idempotency_key": "sha256(task+ver)",</text>
+  <text x="68" y="186" font-family="Consolas, monospace" font-size="11" fill="#F8FAFC">"session_scope": {"entity_id": "E104"},</text>
+  <text x="68" y="206" font-family="Consolas, monospace" font-size="11" fill="#F8FAFC">"state_version": 4,</text>
+  <text x="68" y="226" font-family="Consolas, monospace" font-size="11" fill="#FCA5A5">"hop_budget": {"current": 2, "max": 5},</text>
+  <text x="68" y="246" font-family="Consolas, monospace" font-size="11" fill="#C4B5FD">"provenance": ["AgentA@v1", "ToolX"],</text>
+  <text x="68" y="266" font-family="Consolas, monospace" font-size="11" fill="#F8FAFC">"payload_schema": "CandidatePlanV2"</text>
+  <text x="56" y="286" font-family="Consolas, monospace" font-size="11" fill="#38BDF8">}</text>
+  <text x="42" y="324" font-size="11" fill="#334155">• 网关层强制校验信封头：版本不匹配或超出跳数预算</text>
+  <text x="42" y="344" font-size="11" fill="#334155">  (hop_budget) 立即熔断拦截，防止幽灵消息污染全局状态</text>
+  <text x="42" y="364" font-size="11" fill="#1E40AF" font-weight="bold">• 幂等键防止网络超时重试导致外部写操作重复执行</text>
+
+  <!-- Middle: Checkpoint & Time Travel -->
+  <rect x="380" y="56" width="340" height="330" rx="10" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="1.5"/>
+  <text x="550" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#065F46">2. 状态快照与时间旅行分叉 (Checkpointing)</text>
+  <circle cx="430" cy="144" r="16" fill="#10B981"/><text x="430" y="148" text-anchor="middle" font-size="10" fill="#FFFFFF">CP1</text>
+  <line x1="446" y1="144" x2="504" y2="144" stroke="#059669" stroke-width="2"/>
+  <circle cx="520" cy="144" r="16" fill="#10B981"/><text x="520" y="148" text-anchor="middle" font-size="10" fill="#FFFFFF">CP2</text>
+  <line x1="536" y1="144" x2="594" y2="120" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2"/>
+  <circle cx="610" cy="114" r="16" fill="#FEE2E2" stroke="#EF4444"/><text x="610" y="118" text-anchor="middle" font-size="9" fill="#991B1B">崩溃</text>
+  <line x1="536" y1="148" x2="594" y2="176" stroke="#2563EB" stroke-width="2.5"/>
+  <circle cx="610" cy="182" r="16" fill="#2563EB"/><text x="610" y="186" text-anchor="middle" font-size="9" fill="#FFFFFF">CP2'</text>
+  <text x="664" y="186" text-anchor="middle" font-size="10" font-weight="bold" fill="#1E40AF">Fork 续跑</text>
+
+  <rect x="398" y="218" width="304" height="148" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+  <text x="412" y="242" font-size="12" font-weight="bold" fill="#047857">Durable Execution (持久化执行三要素)：</text>
+  <text x="412" y="264" font-size="11" fill="#334155">1. 每完成一个 Super-step 自动将状态图序列化落盘</text>
+  <text x="412" y="286" font-size="11" fill="#334155">2. 遇到人工审批 (Human-in-the-Loop) 时零资源挂起，</text>
+  <text x="412" y="304" font-size="11" fill="#334155">   释放 GPU/内存，数天后再按 thread_id 无损唤醒</text>
+  <text x="412" y="326" font-size="11" fill="#334155">3. 支持从任意历史 Checkpoint 注入修正参数并开新分支</text>
+  <text x="412" y="346" font-size="11" fill="#065F46" font-weight="bold">   无需重跑前面已成功的昂贵多模态解析节点</text>
+
+  <!-- Right: Saga Compensation -->
+  <rect x="736" y="56" width="320" height="330" rx="10" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="896" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#92400E">3. Saga 逆向补偿与分级回退</text>
+  <rect x="754" y="106" width="284" height="36" rx="5" fill="#DBEAFE" stroke="#3B82F6"/>
+  <text x="896" y="128" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">正向事务 T1 (选型) → T2 (建模) → T3 (调参)</text>
+  <text x="896" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#DC2626">↓ T4 验证发现底层硬件能力不达标 ↓</text>
+  <rect x="754" y="170" width="284" height="44" rx="5" fill="#FEE2E2" stroke="#EF4444"/>
+  <text x="896" y="190" text-anchor="middle" font-size="11" font-weight="bold" fill="#991B1B">执行补偿动作 C3 (作废参数) → C2 (归档旧模型)</text>
+  <text x="896" y="206" text-anchor="middle" font-size="10" fill="#7F1D1D">带着失败约束重新触发 T1' (跨品类重选)</text>
+
+  <rect x="754" y="228" width="284" height="138" rx="6" fill="#FFFFFF" stroke="#FDE68A"/>
+  <text x="768" y="250" font-size="12" font-weight="bold" fill="#92400E">为什么不能简单重置变量？</text>
+  <text x="768" y="272" font-size="11" fill="#334155">• 下游 Agent 可能已产生外部副作用（创建了工单、</text>
+  <text x="768" y="292" font-size="11" fill="#334155">  锁定了库存或生成了 CAD 制造文件）</text>
+  <text x="768" y="312" font-size="11" fill="#334155">• 每个正向写工具 T_i 必须配对注册逆向补偿工具 C_i</text>
+  <text x="768" y="332" font-size="11" fill="#334155">• 回退时保留历史版本链，并将“上次为何失败”作为</text>
+  <text x="768" y="350" font-size="11" fill="#92400E" font-weight="bold">  负向约束注入上游，防止重蹈覆辙</text>
+</svg>

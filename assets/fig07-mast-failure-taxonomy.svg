@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 440" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
+  <rect width="1080" height="440" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 7：UC Berkeley MAST 多智能体失效分类学（1,642 条生产轨迹实证与 14 类失效模式）</text>
+
+  <!-- Pillar 1: Specification & System Design -->
+  <rect x="24" y="56" width="332" height="360" rx="10" fill="#EFF6FF" stroke="#93C5FD" stroke-width="1.5"/>
+  <text x="190" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E3A8A">一、系统与规约设计缺陷 (~37%)</text>
+  <text x="190" y="104" text-anchor="middle" font-size="11" fill="#1D4ED8">Specification &amp; System Design Issues</text>
+  
+  <rect x="40" y="118" width="300" height="50" rx="5" fill="#FFFFFF" stroke="#BFDBFE"/>
+  <text x="52" y="138" font-size="12" font-weight="bold" fill="#1E40AF">FM-1.1 违背任务或角色规约</text>
+  <text x="52" y="156" font-size="11" fill="#334155">Agent 越权执行其他角色工作或忽略硬性格式约束</text>
+
+  <rect x="40" y="176" width="300" height="50" rx="5" fill="#FFFFFF" stroke="#BFDBFE"/>
+  <text x="52" y="196" font-size="12" font-weight="bold" fill="#1E40AF">FM-1.2 死循环与重复步骤 (Step Repetition)</text>
+  <text x="52" y="214" font-size="11" fill="#334155">两个 Agent 互相礼貌推诿或重复调用同一失败工具</text>
+
+  <rect x="40" y="234" width="300" height="50" rx="5" fill="#FFFFFF" stroke="#BFDBFE"/>
+  <text x="52" y="254" font-size="12" font-weight="bold" fill="#1E40AF">FM-1.3 对话历史与上下文丢失</text>
+  <text x="52" y="272" font-size="11" fill="#334155">窗口截断或交接摘要漏掉了用户最初的核心限定条件</text>
+
+  <rect x="40" y="292" width="300" height="50" rx="5" fill="#FFFFFF" stroke="#BFDBFE"/>
+  <text x="52" y="312" font-size="12" font-weight="bold" fill="#1E40AF">FM-1.4 &amp; 1.5 不知何时停止 / 丧失终止意识</text>
+  <text x="52" y="330" font-size="11" fill="#334155">缺乏明确停止条件，达成目标后仍继续无意义改写</text>
+
+  <text x="40" y="370" font-size="11" font-weight="bold" fill="#1E3A8A">工程根治：有限状态机 + 显式 max_turns 熔断器</text>
+  <text x="40" y="390" font-size="11" fill="#334155">禁止依赖自然语言暗号决定路由，改用结构化枚举转移</text>
+
+  <!-- Pillar 2: Inter-Agent Misalignment -->
+  <rect x="374" y="56" width="332" height="360" rx="10" fill="#FFFBEB" stroke="#FCD34D" stroke-width="1.5"/>
+  <text x="540" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#92400E">二、智能体间协同失调 (~34%)</text>
+  <text x="540" y="104" text-anchor="middle" font-size="11" fill="#B45309">Inter-Agent Misalignment</text>
+
+  <rect x="390" y="118" width="300" height="44" rx="5" fill="#FFFFFF" stroke="#FDE68A"/>
+  <text x="402" y="136" font-size="12" font-weight="bold" fill="#92400E">FM-2.1 对话意外重置 (Conversation Reset)</text>
+  <text x="402" y="152" font-size="11" fill="#334155">下游 Agent 无视上游已完成的进度，从头重新提问</text>
+
+  <rect x="390" y="170" width="300" height="44" rx="5" fill="#FFFFFF" stroke="#FDE68A"/>
+  <text x="402" y="188" font-size="12" font-weight="bold" fill="#92400E">FM-2.2 漏问澄清与盲目假设</text>
+  <text x="402" y="204" font-size="11" fill="#334155">输入参数残缺时不触发追问，而是自行脑补默认值</text>
+
+  <rect x="390" y="222" width="300" height="44" rx="5" fill="#FFFFFF" stroke="#FDE68A"/>
+  <text x="402" y="240" font-size="12" font-weight="bold" fill="#92400E">FM-2.3 偏离主线任务 (Task Derailment)</text>
+  <text x="402" y="256" font-size="11" fill="#334155">多轮交互后注意力被支线细节带偏，遗忘主目标</text>
+
+  <rect x="390" y="274" width="300" height="44" rx="5" fill="#FFFFFF" stroke="#FDE68A"/>
+  <text x="402" y="292" font-size="12" font-weight="bold" fill="#92400E">FM-2.4 &amp; 2.5 信息隐瞒 / 忽略平级修正意见</text>
+  <text x="402" y="308" font-size="11" fill="#334155">上游未传递关键观测值，或下游完全无视 Reviewer 批注</text>
+
+  <rect x="390" y="326" width="300" height="44" rx="5" fill="#FFFFFF" stroke="#FDE68A"/>
+  <text x="402" y="344" font-size="12" font-weight="bold" fill="#92400E">FM-2.6 推理与实际动作脱节 (Reasoning-Action)</text>
+  <text x="402" y="360" font-size="11" fill="#334155">思考链中说要修改 A 参数，实际调用工具时仍传旧值</text>
+
+  <text x="390" y="394" font-size="11" font-weight="bold" fill="#92400E">工程根治：Pydantic 强类型交接契约 + 必填字段校验</text>
+
+  <!-- Pillar 3: Task Verification & Termination -->
+  <rect x="724" y="56" width="332" height="360" rx="10" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1.5"/>
+  <text x="890" y="84" text-anchor="middle" font-size="15" font-weight="bold" fill="#9F1239">三、任务验证与终止失守 (~29%)</text>
+  <text x="890" y="104" text-anchor="middle" font-size="11" fill="#BE123C">Task Verification &amp; Termination</text>
+
+  <rect x="740" y="118" width="300" height="68" rx="5" fill="#FFFFFF" stroke="#FECDD3"/>
+  <text x="752" y="140" font-size="12" font-weight="bold" fill="#B91C1C">FM-3.1 过早宣告完成 (Premature Termination)</text>
+  <text x="752" y="160" font-size="11" fill="#334155">子任务尚未跑完或代码尚未通过测试，便直接输出</text>
+  <text x="752" y="176" font-size="11" fill="#334155">“任务已圆满完成”并结束流程。</text>
+
+  <rect x="740" y="196" width="300" height="68" rx="5" fill="#FFFFFF" stroke="#FECDD3"/>
+  <text x="752" y="218" font-size="12" font-weight="bold" fill="#B91C1C">FM-3.2 验证缺失或不完整 (Incomplete Verification)</text>
+  <text x="752" y="238" font-size="11" fill="#334155">Verifier 只检查了语法格式，未核对业务逻辑、边界条件</text>
+  <text x="752" y="254" font-size="11" fill="#334155">与核心数值约束。</text>
+
+  <rect x="740" y="274" width="300" height="68" rx="5" fill="#FFFFFF" stroke="#FECDD3"/>
+  <text x="752" y="296" font-size="12" font-weight="bold" fill="#B91C1C">FM-3.3 错误验证放行 (Incorrect Verification)</text>
+  <text x="752" y="316" font-size="11" fill="#334155">Judge 模型自身产生幻觉，将错误的中间计算结果判定</text>
+  <text x="752" y="332" font-size="11" fill="#334155">为“合规通过”，导致带病流入生产环节。</text>
+
+  <text x="740" y="368" font-size="11" font-weight="bold" fill="#9F1239">核心洞察：只改 Prompt 只能修复不到 14% 的故障！</text>
+  <text x="740" y="388" font-size="11" fill="#334155">必须引入外部确定性代码验证器 (Deterministic Oracle)</text>
+</svg>
