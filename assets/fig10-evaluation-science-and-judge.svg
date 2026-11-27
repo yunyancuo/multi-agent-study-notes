@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 400" width="100%" height="auto" font-family="Microsoft YaHei, PingFang SC, sans-serif">
   <rect width="1080" height="400" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
-  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 10：智能体评测科学（τ-bench 的 pass^k 可靠性悬崖与 Agent-as-a-Judge 轨迹审计）</text>
+  <text x="540" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#0F172A">图 11：智能体评测科学（τ-bench 的 pass^k 可靠性悬崖与 Agent-as-a-Judge 轨迹审计）</text>
 
   <rect x="28" y="58" width="500" height="316" rx="10" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1.5"/>
   <text x="278" y="86" text-anchor="middle" font-size="15" font-weight="bold" fill="#9F1239">1. τ-bench 揭示的残酷真相：pass@k 与 pass^k 的天壤之别</text>

@@ -59,17 +59,17 @@
   <text x="890" y="104" text-anchor="middle" font-size="11" fill="#BE123C">Task Verification &amp; Termination</text>
 
   <rect x="740" y="118" width="300" height="68" rx="5" fill="#FFFFFF" stroke="#FECDD3"/>
-  <text x="752" y="140" font-size="12" font-weight="bold" fill="#B91C1C">FM-3.1 过早宣告完成 (Premature Termination)</text>
+  <text x="752" y="140" font-size="11.5" font-weight="bold" fill="#B91C1C">FM-3.1 过早宣告完成 (Premature Termination)</text>
   <text x="752" y="160" font-size="11" fill="#334155">子任务尚未跑完或代码尚未通过测试，便直接输出</text>
   <text x="752" y="176" font-size="11" fill="#334155">“任务已圆满完成”并结束流程。</text>
 
   <rect x="740" y="196" width="300" height="68" rx="5" fill="#FFFFFF" stroke="#FECDD3"/>
-  <text x="752" y="218" font-size="12" font-weight="bold" fill="#B91C1C">FM-3.2 验证缺失或不完整 (Incomplete Verification)</text>
+  <text x="752" y="218" font-size="11" font-weight="bold" fill="#B91C1C">FM-3.2 验证缺失或不完整 (Incomplete Verification)</text>
   <text x="752" y="238" font-size="11" fill="#334155">Verifier 只检查了语法格式，未核对业务逻辑、边界条件</text>
   <text x="752" y="254" font-size="11" fill="#334155">与核心数值约束。</text>
 
   <rect x="740" y="274" width="300" height="68" rx="5" fill="#FFFFFF" stroke="#FECDD3"/>
-  <text x="752" y="296" font-size="12" font-weight="bold" fill="#B91C1C">FM-3.3 错误验证放行 (Incorrect Verification)</text>
+  <text x="752" y="296" font-size="11.5" font-weight="bold" fill="#B91C1C">FM-3.3 错误验证放行 (Incorrect Verification)</text>
   <text x="752" y="316" font-size="11" fill="#334155">Judge 模型自身产生幻觉，将错误的中间计算结果判定</text>
   <text x="752" y="332" font-size="11" fill="#334155">为“合规通过”，导致带病流入生产环节。</text>
 

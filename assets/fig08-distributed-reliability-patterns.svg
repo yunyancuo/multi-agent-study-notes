@@ -53,7 +53,7 @@
   <text x="768" y="250" font-size="12" font-weight="bold" fill="#92400E">为什么不能简单重置变量？</text>
   <text x="768" y="272" font-size="11" fill="#334155">• 下游 Agent 可能已产生外部副作用（创建了工单、</text>
   <text x="768" y="292" font-size="11" fill="#334155">  锁定了库存或生成了 CAD 制造文件）</text>
-  <text x="768" y="312" font-size="11" fill="#334155">• 每个正向写工具 T_i 必须配对注册逆向补偿工具 C_i</text>
+  <text x="768" y="312" font-size="10.5" fill="#334155">• 每个正向写工具 T_i 必须配对注册逆向补偿工具 C_i</text>
   <text x="768" y="332" font-size="11" fill="#334155">• 回退时保留历史版本链，并将“上次为何失败”作为</text>
   <text x="768" y="350" font-size="11" fill="#92400E" font-weight="bold">  负向约束注入上游，防止重蹈覆辙</text>
 </svg>
