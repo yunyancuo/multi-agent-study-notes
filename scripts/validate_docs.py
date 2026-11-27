@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """仓库文档与 SVG 资源自动化质量校验脚本（零第三方依赖）。
 
 校验范围：
@@ -12,15 +11,16 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
 import io
 import re
 import sys
 import unicodedata
 import urllib.parse
 import xml.etree.ElementTree as ET
+from collections.abc import Iterator
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterator
 
 SVG_NAMESPACE = "http://www.w3.org/2000/svg"
 ASSET_EXTENSIONS = {".svg", ".png", ".jpg", ".jpeg", ".webp", ".gif"}
@@ -276,16 +276,19 @@ def validate_links_and_assets(repo_root: Path) -> tuple[list[ValidationIssue], i
     assets_dir = repo_root / "assets"
     if assets_dir.is_dir():
         for asset in sorted(assets_dir.iterdir()):
-            if asset.is_file() and asset.suffix.lower() in ASSET_EXTENSIONS:
-                if asset.resolve() not in referenced_files:
-                    issues.append(
-                        ValidationIssue(
-                            "orphan-asset",
-                            asset.relative_to(repo_root).as_posix(),
-                            None,
-                            "资源文件未被任何 Markdown 文档引用（孤立资源）",
-                        )
+            if (
+                asset.is_file()
+                and asset.suffix.lower() in ASSET_EXTENSIONS
+                and asset.resolve() not in referenced_files
+            ):
+                issues.append(
+                    ValidationIssue(
+                        "orphan-asset",
+                        asset.relative_to(repo_root).as_posix(),
+                        None,
+                        "资源文件未被任何 Markdown 文档引用（孤立资源）",
                     )
+                )
 
     # 检查 notes/ 下所有专题笔记是否均被 README.md 引用
     notes_dir = repo_root / "notes"
@@ -428,14 +431,11 @@ def validate_svgs(repo_root: Path) -> tuple[list[ValidationIssue], int]:
             if enclosing:
                 smallest = min(enclosing, key=lambda rc: (rc[2] - rc[0]) * (rc[3] - rc[1]))
                 if x0 < smallest[0] - 4 or x1 > smallest[2] + 4:
-                    issues.append(
-                        ValidationIssue(
-                            "svg-overflow",
-                            rel_svg,
-                            None,
-                            f"文本可能溢出容器边界 (x=[{x0:.0f},{x1:.0f}], box=[{smallest[0]:.0f},{smallest[2]:.0f}]): {txt}",
-                        )
+                    msg = (
+                        f"文本可能溢出容器边界 (x=[{x0:.0f},{x1:.0f}], "
+                        f"box=[{smallest[0]:.0f},{smallest[2]:.0f}]): {txt}"
                     )
+                    issues.append(ValidationIssue("svg-overflow", rel_svg, None, msg))
 
     return issues, len(svg_files)
 
@@ -573,11 +573,7 @@ def validate_figure_numbering_and_toc(repo_root: Path) -> list[ValidationIssue]:
 
 def _count_table_columns(line: str) -> int:
     """计算 Markdown 表格单行的列数（忽略转义管道符）。"""
-    stripped = line.strip()
-    if stripped.startswith("|"):
-        stripped = stripped[1:]
-    if stripped.endswith("|"):
-        stripped = stripped[:-1]
+    stripped = line.strip().removeprefix("|").removesuffix("|")
     parts = re.split(r"(?<!\\)\|", stripped)
     return len(parts)
 
@@ -777,10 +773,8 @@ def run_all_validations(repo_root: Path) -> ValidationReport:
 def _ensure_utf8_stdout() -> None:
     """在 Windows 控制台下确保 stdout 使用 UTF-8 编码输出中文。"""
     if hasattr(sys.stdout, "reconfigure"):
-        try:
+        with contextlib.suppress(OSError, ValueError):
             sys.stdout.reconfigure(encoding="utf-8")
-        except (OSError, ValueError):
-            pass
     elif isinstance(sys.stdout, io.TextIOWrapper):
         sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
