@@ -1,5 +1,7 @@
 # 专题三：群体动力学、多智能体辩论（MAD）病理学与非对称证据裁决
 
+> [← 返回全书总目录](../README.md) | 对应主章：[第四章](../README.md#第四章群体动力学多智能体辩论mad病理学与证据裁决机制) | [← 上一篇：专题二](02-topologies-and-dynamic-graph-pruning.md) | [下一篇：专题四 →](04-context-engineering-and-mast-reliability.md)
+
 ![图 5：多智能体辩论（MAD）的三大群体病理学与证据锚定裁决方案](../assets/fig05-debate-pathologies-and-cures.svg)
 
 ## 1. 为什么朴素的多智能体自由辩论经常失灵？
@@ -37,3 +39,7 @@ $$\ln P(y_i^{(t)} = y \mid x, \mathbf{y}_{-i}^{(t-1)}) \propto \ln P_{\text{self
    * $\text{L3}$（推演证据）：大模型基于上下文进行的自由逻辑推演或常识启发式猜测。
 3. **一票否决与重采样守则**：
    在裁决函数 $\text{Adjudicate}(\{(y_i, e_i)\})$ 中，高等级证据对低等级证据具有字典序压制权（Lexicographical Dominance）：任何一条经过校验的 $\text{L1}$ 反例，直接否决任意数量的 $\text{L3}$ 赞成票，并强制将具体违例约束写入重算上下文。
+
+---
+
+[← 上一篇：专题二：通信拓扑与动态图剪枝](02-topologies-and-dynamic-graph-pruning.md) | [返回全书总目录](../README.md) | [下一篇：专题四：上下文工程与 MAST 容错 →](04-context-engineering-and-mast-reliability.md)

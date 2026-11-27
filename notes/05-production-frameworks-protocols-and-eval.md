@@ -1,5 +1,7 @@
 # 专题五：2025 至 2026 四大主流生产框架运行时、MCP/A2A 协议栈与评测科学
 
+> [← 返回全书总目录](../README.md) | 对应主章：[第七章](../README.md#第七章2025-至-2026-四大主流生产框架运行时与双层开放协议栈mcp--a2a) & [第八章](../README.md#第八章智能体评测科学从静态刷榜到-passk-可靠性悬崖与-agent-as-a-judge) | [← 上一篇：专题四](04-context-engineering-and-mast-reliability.md) | [下一篇：专题六 →](06-vertical-domain-case-study.md)
+
 ![图 9：现代智能体双层开放协议栈](../assets/fig09-framework-and-protocol-stack.svg)
 
 ## 1. MCP 与 Google A2A 协议报文级解剖
@@ -49,7 +51,7 @@ MCP Server 在沙箱内运行确定性算法后，返回结构化结果与资源
 
 ## 2. 四大主流编排框架底层运行时对比
 
-![图 11：2025-2026 四大主流多智能体框架底层运行时对比](../assets/fig11-framework-runtime-internals.svg)
+![图 10：2025-2026 四大主流多智能体框架底层运行时对比](../assets/fig11-framework-runtime-internals.svg)
 
 | 评估维度 | LangGraph (LangChain) | AutoGen v0.4 / AG2 (Microsoft) | OpenAI Agents SDK | Anthropic 主从架构模式 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -58,14 +60,18 @@ MCP Server 在沙箱内运行确定性算法后，返回结构化结果与资源
 | **长周期人工介入** | 原生 `Checkpointer` + `interrupt()` | 订阅外部人工审批事件唤醒 Actor | 需在外层业务代码序列化会话状态 | 依赖外部任务队列挂起与恢复 |
 | **并发安全护栏** | 条件边守卫节点 | 独立 Observer / Guard Actor | **并行抢占式 Guardrail**（违规即中断主模型） | 独立 Verifier 子智能体闭环 |
 
-## 3. 智能体评测科学：$\tau$-bench 的 $\text{pass}^k$ 悬崖与 Agent-as-a-Judge
+## 3. 智能体评测科学：τ-bench 的 pass^k 悬崖与 Agent-as-a-Judge
 
-![图 10：智能体评测科学](../assets/fig10-evaluation-science-and-judge.svg)
+![图 11：智能体评测科学](../assets/fig10-evaluation-science-and-judge.svg)
 
-### 3.1 为什么必须同时监控 $\text{pass}@k$ 与 $\text{pass}^k$？
+### 3.1 为什么必须同时监控 pass@k 与 pass^k？
 
 设单次运行成功率为 $p$，连续独立运行 $k$ 次：
 * **探索上限指标 $\text{pass}@k = 1 - (1-p)^k$**：衡量模型“有没有潜力解出这道题”（用于强化学习采样或代码生成候选池筛选）。
 * **生产交付指标 $\text{pass}^k = p^k$**：衡量系统“能不能稳定可靠地交付生产”（用于临床辅助、金融交易、企业工单）。
 
 对任意 $p < 1$，$\frac{\partial (\text{pass}^k)}{\partial k} = p^k \ln p < 0$。要把 $\text{pass}^8$ 维持在 $80\%$ 以上，单次端到端成功率 $p$ 必须达到 $0.80^{1/8} \approx \mathbf{97.25\%}$。这就要求我们在架构设计上把一切可公理化的计算剥离为确定性 MCP 工具，仅让大模型负责语义解析、模糊匹配与跨模态综合解释。
+
+---
+
+[← 上一篇：专题四：上下文工程与 MAST 容错](04-context-engineering-and-mast-reliability.md) | [返回全书总目录](../README.md) | [下一篇：专题六：垂直领域工程映射实战 →](06-vertical-domain-case-study.md)

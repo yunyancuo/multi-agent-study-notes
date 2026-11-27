@@ -1,5 +1,7 @@
 # 专题一：多智能体第一性原理、信息论边界与 CoALA 认知架构
 
+> [← 返回全书总目录](../README.md) | 对应主章：[第一章](../README.md#第一章第一性原理与信息论边界为什么单智能体会撞墙) & [第二章](../README.md#第二章从经典分布式人工智能dai到现代认知架构coala) | 下一篇：[专题二：通信拓扑与动态图剪枝 →](02-topologies-and-dynamic-graph-pruning.md)
+
 ![图 1：多智能体第一性原理](../assets/fig01-first-principles-scaling.svg)
 
 ## 1. 为什么超长上下文窗口不能替代多智能体？
@@ -52,3 +54,7 @@ $$\text{Var}(\bar{E}) = \frac{p(1-p)}{N} + \frac{N-1}{N} \rho \cdot p(1-p) \xrig
   $$\text{Cost}_{\text{ReWOO}}(M) = \underbrace{P}_{\text{Planner}} + \underbrace{(P + M \cdot A + M \cdot O)}_{\text{Solver}} = 2P + M(A + O)$$
 
 当工具调用步数 $M = 8, P = 1500, A+O = 800$ 时，ReAct 需消耗 $42,300$ 输入 Token，而 ReWOO 仅消耗 $9,400$ 输入 Token，节省比例高达 **77.8%**。这解释了为什么在子任务流程相对固定的节点内部，应当优先采用“一次规划 + DAG 批量执行”而非无限制的自由 ReAct 循环。
+
+---
+
+[← 返回全书总目录](../README.md) | 下一篇：[专题二：六大通信拓扑与动态图剪枝 →](02-topologies-and-dynamic-graph-pruning.md)
