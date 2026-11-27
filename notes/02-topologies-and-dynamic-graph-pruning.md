@@ -1,5 +1,7 @@
 # 专题二：六大通信拓扑图论分析与动态图剪枝算法（DyLAN / AgentPrune / MacNet）
 
+> [← 返回全书总目录](../README.md) | 对应主章：[第三章](../README.md#第三章多智能体六大通信拓扑与动态图剪枝算法dylan--agentprune--macnet) | [← 上一篇：专题一](01-theoretical-foundations-and-coala.md) | [下一篇：专题三 →](03-debate-dynamics-and-game-theory.md)
+
 ![图 3：多智能体六大通信拓扑图谱与复杂度对比](../assets/fig03-six-communication-topologies.svg)
 
 ## 1. 多智能体通信图的矩阵表示与谱性质
@@ -41,3 +43,7 @@ MacNet 探讨了当节点数 $N$ 从 $10^1$ 扩展至 $10^3$ 时不同拓扑家�
 * **规则链与环形图**：平均路径长度 $L_{\text{path}} \propto N$，早期节点发现的关键约束在经过几十次转述后发生严重信息损耗（Information Decay）。
 * **随机图（Erdős–Rényi）**：虽然平均路径短，但缺乏局部高密度交叉核验子图（Clustering Coefficient 低），局部错误容易未经校验直接汇入终点。
 * **小世界有向无环图（Small-World DAG）**：同时具备高局部聚类系数（3 至 4 个紧密耦合的领域子智能体先在局部子图内完成生成与验证闭环）和短全局路径长度（通过跨簇长程边在 $O(\log N)$ 步内汇入总控），在大规模协作基准上取得了最优的精度-成本帕累托前沿。
+
+---
+
+[← 上一篇：专题一：第一性原理与 CoALA](01-theoretical-foundations-and-coala.md) | [返回全书总目录](../README.md) | [下一篇：专题三：辩论动力学与证据裁决 →](03-debate-dynamics-and-game-theory.md)

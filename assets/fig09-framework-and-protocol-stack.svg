@@ -6,15 +6,15 @@
   <rect x="28" y="56" width="1024" height="168" rx="10" fill="#EFF6FF" stroke="#60A5FA" stroke-width="1.5"/>
   <text x="540" y="82" text-anchor="middle" font-size="15" font-weight="bold" fill="#1E3A8A">水平层：Agent-to-Agent (A2A) 跨智能体协同协议（不透明黑盒委派、长任务生命周期与能力发现）</text>
 
-  <rect x="52" y="98" width="240" height="108" rx="8" fill="#1E40AF"/>
-  <text x="172" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">Client / Lead Orchestrator</text>
-  <text x="172" y="146" text-anchor="middle" font-size="11" fill="#BFDBFE">• 读取远端 /.well-known/agent.json</text>
-  <text x="172" y="166" text-anchor="middle" font-size="11" fill="#BFDBFE">• 派发 Task 并订阅 SSE 状态流</text>
-  <text x="172" y="186" text-anchor="middle" font-size="11" fill="#93C5FD">• 无需获知对方内部 Prompt 与工具</text>
+  <rect x="52" y="98" width="230" height="108" rx="8" fill="#1E40AF"/>
+  <text x="167" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#FFFFFF">Client / Lead Orchestrator</text>
+  <text x="167" y="146" text-anchor="middle" font-size="10.5" fill="#BFDBFE">• 读取远端 /.well-known/agent.json</text>
+  <text x="167" y="166" text-anchor="middle" font-size="10.5" fill="#BFDBFE">• 派发 Task 并订阅 SSE 状态流</text>
+  <text x="167" y="186" text-anchor="middle" font-size="10.5" fill="#93C5FD">• 无需获知对方内部 Prompt 与工具</text>
 
-  <text x="416" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="#1D4ED8">── JSON-RPC + SSE 流式状态 ──►</text>
-  <text x="416" y="148" text-anchor="middle" font-size="10" fill="#334155">[submitted → working → input-required → completed]</text>
-  <text x="416" y="172" text-anchor="middle" font-size="11" font-weight="bold" fill="#047857">◄── 交付标准化 Artifact 载荷 ──</text>
+  <text x="411" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="#1D4ED8">── JSON-RPC + SSE 流式状态 ──►</text>
+  <text x="411" y="148" text-anchor="middle" font-size="9.5" fill="#334155">submitted → working → input-required → completed</text>
+  <text x="411" y="172" text-anchor="middle" font-size="11" font-weight="bold" fill="#047857">◄── 交付标准化 Artifact 载荷 ──</text>
 
   <rect x="540" y="98" width="228" height="108" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
   <text x="654" y="124" text-anchor="middle" font-size="13" font-weight="bold" fill="#1E40AF">Remote Specialist Agent A</text>

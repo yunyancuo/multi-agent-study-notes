@@ -32,12 +32,12 @@
   <text x="418" y="224" text-anchor="end" font-size="10" fill="#475569">0.0</text>
   <text x="544" y="242" text-anchor="middle" font-size="10" fill="#475569">串联交接步数 T (单步成功率 p=0.85)</text>
   <path d="M 426 135 Q 510 142 650 148" fill="none" stroke="#16A34A" stroke-width="2.5"/>
-  <text x="565" y="136" font-size="11" font-weight="bold" fill="#15803D">带逐步 Verifier 校验: R ≈ 0.92</text>
+  <text x="436" y="130" font-size="11" font-weight="bold" fill="#15803D">带逐步 Verifier 校验: R ≈ 0.80</text>
   <path d="M 426 135 Q 500 185 650 214" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="5,3"/>
-  <text x="545" y="202" font-size="11" font-weight="bold" fill="#B91C1C">无校验裸链: P = p^T → 0.19</text>
+  <text x="478" y="210" font-size="11" font-weight="bold" fill="#B91C1C">无校验裸链: P = p^T ≈ 0.20</text>
   <rect x="394" y="268" width="292" height="110" rx="6" fill="#FFFFFF" stroke="#FDE68A"/>
   <text x="406" y="290" font-size="12" font-weight="bold" fill="#92400E">孔多塞陪审团定理失效与级联崩溃：</text>
-  <text x="406" y="312" font-size="11" fill="#334155">• 串联 10 步且单步 p=0.85 时，裸链成功率仅 0.85¹⁰=19.7%</text>
+  <text x="406" y="312" font-size="10.5" fill="#334155">• 串联 10 步 (p=0.85)，裸链成功率仅 0.85¹⁰=19.7%</text>
   <text x="406" y="332" font-size="11" fill="#334155">• 同源大模型共享预训练盲区，误差高度正相关</text>
   <text x="406" y="352" font-size="11" fill="#334155">• 结论：没有确定性 Verifier 拦截的多 Agent 必败</text>
 
@@ -50,7 +50,7 @@
   <text x="821" y="174" text-anchor="middle" font-size="10" fill="#7F1D1D">优选：单体强推理模型</text>
   <rect x="896" y="138" width="126" height="46" rx="4" fill="#DCFCE7" stroke="#22C55E"/>
   <text x="959" y="158" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803D">高扇出 + 子任务解耦</text>
-  <text x="959" y="174" text-anchor="middle" font-size="10" fill="#166534">优选：主从并行 Subagents</text>
+  <text x="959" y="174" text-anchor="middle" font-size="9.5" fill="#166534">优选：主从并行 Subagents</text>
   <rect x="758" y="194" width="264" height="46" rx="4" fill="#DBEAFE" stroke="#3B82F6"/>
   <text x="890" y="214" text-anchor="middle" font-size="11" font-weight="bold" fill="#1E40AF">异构模态工具集 + 需生成与考评分离</text>
   <text x="890" y="230" text-anchor="middle" font-size="10" fill="#1E3A8A">优选：显式图状态机 (StateGraph) + 独立 Judge</text>

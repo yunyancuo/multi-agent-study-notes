@@ -1,5 +1,7 @@
 # 专题四：多智能体上下文工程、MAST 失效分类学与分布式容错模式
 
+> [← 返回全书总目录](../README.md) | 对应主章：[第五章](../README.md#第五章多智能体上下文工程与状态隔离机制scoped-state--reducers) & [第六章](../README.md#第六章为什么多智能体系统会崩溃mast-失效分类学与分布式容错工程) | [← 上一篇：专题三](03-debate-dynamics-and-game-theory.md) | [下一篇：专题五 →](05-production-frameworks-protocols-and-eval.md)
+
 ![图 6：多智能体上下文工程](../assets/fig06-memory-and-context-engineering.svg)
 
 ## 1. UC Berkeley MAST 14 类失效模式与工程防御映射
@@ -58,3 +60,7 @@ class SagaOrchestrator:
             state.setdefault("negative_constraints", []).append(str(exc))
             raise
 ```
+
+---
+
+[← 上一篇：专题三：辩论动力学与证据裁决](03-debate-dynamics-and-game-theory.md) | [返回全书总目录](../README.md) | [下一篇：专题五：生产框架、协议栈与评测科学 →](05-production-frameworks-protocols-and-eval.md)

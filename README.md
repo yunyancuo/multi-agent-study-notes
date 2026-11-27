@@ -4,18 +4,30 @@
 
 很多关于多智能体的教程停留在“给三个大模型分别写上产品经理、程序员、测试员的 System Prompt，再把它们塞进一个群聊循环”的表层玩法。一旦进入真实工程环境，这种粗糙的拼接会立刻撞上四堵墙：Token 账单呈平方级爆炸、长链路交接后上下文严重失真、多个同源模型在群聊中互相迎合放大幻觉、中间某一步调错外部接口后整个系统卡死且无法回滚。
 
-要真正掌握多智能体协作，必须先跳出单一业务工程，把多智能体系统拆解为四个基础学科的交叉产物：**信息论与上下文压缩**、**分布式系统与容错状态机**、**图论与动态通信拓扑**、**社会选择理论与博弈裁决**。本仓库结合 2024 至 2026 年学术界代表性论文（ICLR、ICML、NeurIPS、COLM）与工业界生产实践（Anthropic、OpenAI、LangChain、Microsoft AutoGen、Google），用 8 个章节与 10 张原创架构图系统梳理这套知识体系。
+要真正掌握多智能体协作，必须先跳出单一业务工程，把多智能体系统拆解为四个基础学科的交叉产物：**信息论与上下文压缩**、**分布式系统与容错状态机**、**图论与动态通信拓扑**、**社会选择理论与博弈裁决**。本仓库结合 2024 至 2026 年学术界代表性论文（ICLR、ICML、NeurIPS、COLM）与工业界生产实践（Anthropic、OpenAI、LangChain、Microsoft AutoGen、Google），用 8 个章节、11 张原创 SVG 架构图与 6 篇专题深度笔记（另附 1 篇垂直领域多模态实战架构案例）系统梳理这套知识体系。
 
 ## 全书章节导航
 
-* **第一章：第一性原理与信息论边界（为什么单智能体会撞墙？）**
-* **第二章：从经典分布式人工智能（DAI）到现代认知架构（CoALA）**
-* **第三章：多智能体六大通信拓扑与动态图剪枝算法（DyLAN / AgentPrune / MacNet）**
-* **第四章：群体动力学、多智能体辩论（MAD）病理学与证据裁决机制**
-* **第五章：多智能体上下文工程与状态隔离机制（Scoped State & Reducers）**
-* **第六章：为什么多智能体系统会崩溃？MAST 失效分类学与分布式容错工程**
-* **第七章：2025 至 2026 四大主流生产框架运行时与双层开放协议栈（MCP + A2A）**
-* **第八章：智能体评测科学（从静态刷榜到 $\text{pass}^k$ 可靠性悬崖与 Agent-as-a-Judge）**
+* [**第一章：第一性原理与信息论边界（为什么单智能体会撞墙？）**](#第一章第一性原理与信息论边界为什么单智能体会撞墙)
+* [**第二章：从经典分布式人工智能（DAI）到现代认知架构（CoALA）**](#第二章从经典分布式人工智能dai到现代认知架构coala)
+* [**第三章：多智能体六大通信拓扑与动态图剪枝算法（DyLAN / AgentPrune / MacNet）**](#第三章多智能体六大通信拓扑与动态图剪枝算法dylan--agentprune--macnet)
+* [**第四章：群体动力学、多智能体辩论（MAD）病理学与证据裁决机制**](#第四章群体动力学多智能体辩论mad病理学与证据裁决机制)
+* [**第五章：多智能体上下文工程与状态隔离机制（Scoped State & Reducers）**](#第五章多智能体上下文工程与状态隔离机制scoped-state--reducers)
+* [**第六章：为什么多智能体系统会崩溃？MAST 失效分类学与分布式容错工程**](#第六章为什么多智能体系统会崩溃mast-失效分类学与分布式容错工程)
+* [**第七章：2025 至 2026 四大主流生产框架运行时与双层开放协议栈（MCP + A2A）**](#第七章2025-至-2026-四大主流生产框架运行时与双层开放协议栈mcp--a2a)
+* [**第八章：智能体评测科学（从静态刷榜到 pass^k 可靠性悬崖与 Agent-as-a-Judge）**](#第八章智能体评测科学从静态刷榜到-passk-可靠性悬崖与-agent-as-a-judge)
+* [**深入阅读：本仓库专题章节索引（`notes/`）**](#深入阅读本仓库专题章节索引notes) | [**核心参考文献与工业界工程报告（2023-2026）**](#核心参考文献与工业界工程报告2023-2026)
+
+### 专题深度笔记快速导览（`notes/`）
+
+| 专题深度笔记 | 对应主书章节 | 配套核心架构图 | 核心进阶内容 |
+| :--- | :--- | :--- | :--- |
+| [专题一：第一性原理与 CoALA 认知架构](notes/01-theoretical-foundations-and-coala.md) | 第一章、第二章 | 图 1、图 2 | 注意力信噪比推导、孔多塞方差下界、ReAct vs. ReWOO 成本公式 |
+| [专题二：六大通信拓扑与动态图剪枝](notes/02-topologies-and-dynamic-graph-pruning.md) | 第三章 | 图 3、图 4 | 邻接矩阵谱性质、DyLAN 逆向回传、AgentPrune 策略梯度、MacNet 小世界 DAG |
+| [专题三：辩论动力学与证据等级裁决](notes/03-debate-dynamics-and-game-theory.md) | 第四章 | 图 5 | 阿希从众似然模型、思维退化机理、非对称法庭与 L1/L2/L3 字典序裁决 |
+| [专题四：上下文工程、MAST 与分布式容错](notes/04-context-engineering-and-mast-reliability.md) | 第五章、第六章 | 图 6、图 7、图 8 | MAST 14 类失效防御映射表、Context Envelope、Saga 逆向补偿参考代码 |
+| [专题五：生产框架运行时、MCP/A2A 与评测科学](notes/05-production-frameworks-protocols-and-eval.md) | 第七章、第八章 | 图 9、图 10、图 11 | MCP / Google A2A JSON-RPC 报文解剖、四大框架对比表、pass@k vs. pass^k 微分分析 |
+| [专题六：垂直领域多模态工程映射实战](notes/06-vertical-domain-case-study.md) | 全书综合映射 | 领域全景架构图 | 严肃医疗多模态协同工作流（A0–A9 / H1–H3）六项映射与三路 Saga 分流复盘 |
 
 ## 第一章：第一性原理与信息论边界（为什么单智能体会撞墙？）
 
@@ -52,7 +64,7 @@ $$P_{\text{naked}}(T) = p^T$$
 
 $$p_{\text{eff}} = p + (1 - p) \cdot q \cdot r$$
 
-当 $p = 0.85, q = 0.95, r = 0.90$ 时，单步有效成功率跃升至 $p_{\text{eff}} \approx 0.986$，此时 10 步串联的整体成功率恢复至 $0.986^{10} \approx 86.9\%$。这组简单的算术揭示了多智能体工程的第一条铁律：**任何没有配套独立验证器（Verifier）的长链路多智能体系统，其可靠性必然在生产环境中归零。**
+当 $p = 0.85, q = 0.95, r = 0.90$ 时，单步有效成功率跃升至 $p_{\text{eff}} = 0.85 + 0.15 \times 0.95 \times 0.90 \approx 0.978$，此时 10 步串联的整体成功率恢复至 $0.97825^{10} \approx 80.3\%$（较裸链的 $19.7\%$ 提升超过 4 倍）。这组简单的算术揭示了多智能体工程的第一条铁律：**任何没有配套独立验证器（Verifier）的长链路多智能体系统，其可靠性必然在生产环境中归零。**
 
 那么，如果在同一节点并联 $N$ 个智能体进行多数投票（Majority Voting），能否像经典的**孔多塞陪审团定理（Condorcet's Jury Theorem, 1785）**所证明的那样，只要单个体准确率 $p > 0.5$，当 $N \to \infty$ 时群体准确率就趋近于 $1$？
 
@@ -104,7 +116,7 @@ $$p_{\text{eff}} = p + (1 - p) \cdot q \cdot r$$
   $$\text{UCB}(s, a) = V(s, a) + c \sqrt{\frac{\ln N(s)}{N(s, a)}}$$
   当某条探索分支在测试或验证器中得分低下时，系统可沿着搜索树回溯（Backtrack）到父节点并尝试另一条分支。需要注意的工程前提是：LATS 只适用于**无副作用或可快照回滚的沙箱环境**（如容器内写代码）；如果智能体已经调用外部 API 发送了真实邮件或扣除了账户余额，树搜索无法在物理世界中简单回退。
 
-## 第三章：多智能体六大通信拓扑与动态图剪枝算法
+## 第三章：多智能体六大通信拓扑与动态图剪枝算法（DyLAN / AgentPrune / MacNet）
 
 当我们将多个智能体组装成系统时，核心设计决策不再是“每个智能体的人设怎么写”，而是**节点之间的通信拓扑图（Communication Graph）如何定义**。通信拓扑直接决定了系统的渐近消息复杂度、端到端响应延迟以及局部幻觉的传染半径。
 
@@ -156,7 +168,7 @@ $$\max_{\mathbf{M}} \mathbb{E}_{A \sim \text{Bernoulli}(\mathbf{M})} [U(G_A; x)]
 * 在传统群聊架构中，一旦智能体数量超过 $10$ 个，上下文窗口就会被撑爆；而在 DAG 拓扑下，由于每个节点仅接收其直接前驱节点（In-degree neighbors）的结构化摘要，协作规模可以平滑扩展至 **1,000 个以上智能体**。
 * 在对比随机图、完全图、链式图与**小世界拓扑（Small-World Watts-Strogatz Graph）**后，MacNet 发现具有“高局部聚类系数 + 短平均路径长度”的小世界有向无环图能够兼顾局部深度打磨与全局信息快速汇聚，收敛速度与推理质量均为最优。
 
-## 第四章：群体动力学、多智能体辩论（MAD）病理学与裁决机制
+## 第四章：群体动力学、多智能体辩论（MAD）病理学与证据裁决机制
 
 2023 年底至 2024 年初，“让多个大模型互相辩论（Multi-Agent Debate, MAD）”曾被视为解决大模型幻觉的万能钥匙（Du et al., ICML 2024; Liang et al., EMNLP 2024）。然而，随着 2024 年底至 2025 年多篇严格控制变量的基准研究发表（如 ICLR 2025 *Should We Really Debate?* 等实证分析），研究者发现了一个扎心的事实：**在相同 Token 预算下，朴素的多智能体自由辩论往往还不如单模型简单采样 $K$ 次取多数票（Self-Consistency），甚至经常出现“第一轮有人答对，辩论三轮后全员改错”的倒退现象。**
 
@@ -188,7 +200,7 @@ $$\max_{\mathbf{M}} \mathbb{E}_{A \sim \text{Bernoulli}(\mathbf{M})} [U(G_A; x)]
 * **第四招：复杂度自适应路由（Complexity-Adaptive Routing, 如 MIT MDAgents, NeurIPS 2024）**
   并非所有任务都值得拉起多智能体仲裁。前置于入口的轻量级路由模块先对输入样本进行冲突度与不确定性评估：对于特征清晰、无内部矛盾的常规样本（占真实流量的 70% 至 80%），直接走单智能体加确定性规则校验的快速通道；唯有当多源输入指标出现显式矛盾（如客观检查结果与主观反馈背离）时，才升级拉起多专家协同图。
 
-## 第五章：多智能体上下文工程与状态隔离机制
+## 第五章：多智能体上下文工程与状态隔离机制（Scoped State & Reducers）
 
 如果说单智能体开发的核心手艺是 Prompt Engineering（提示词工程），那么多智能体系统开发的核心手艺就是 **Context & State Engineering（上下文与状态工程）**：即精确控制“在什么时刻、把哪一部分状态切片、以什么数据结构暴露给哪一个智能体”。
 
@@ -259,7 +271,7 @@ class GlobalWorkflowState(TypedDict):
 
 伯克利团队在论文中做了一个极具警示意义的干预实验：当他们尝试**仅通过优化各角色的 Prompt（如把指令写得更详细、加上“请务必仔细核对”）**来修复这些故障时，**超过 86% 的系统性崩溃依然复现**。原因在于：绝大多数失效并非源于单个模型“听不懂人话”，而是源于**缺乏拓扑级的结构化契约、确定性状态守卫与外部验证器**。
 
-### 6.2 面向概率型节点的四大分布式容错工程模式
+### 6.2 面向概率型节点的三大分布式容错工程模式
 
 既然每个大模型智能体本质上都是一个**带有随机采样噪声、可能随时超时或输出脏数据的不可靠计算节点**，我们就必须借鉴分布式系统（Distributed Systems）的经典容错设计，把不可靠的节点装进可靠的工程笼子里：
 
@@ -304,7 +316,7 @@ class GlobalWorkflowState(TypedDict):
 
 在挑选编排框架时，切忌只看表面的 API 糖衣，而要看其底层运行时（Runtime Engine）如何管理状态与并发：
 
-![图 11：2025-2026 四大主流多智能体框架底层运行时对比](assets/fig11-framework-runtime-internals.svg)
+![图 10：2025-2026 四大主流多智能体框架底层运行时对比](assets/fig11-framework-runtime-internals.svg)
 
 * **1. LangGraph（基于 Google Pregel / BSP 模型的循环图状态机）**
   LangGraph 底层借鉴了大规模图计算系统 Google Pregel 的**整体同步并行（Bulk Synchronous Parallel, BSP）**模型。每一次迭代被称为一个 **Super-step（超步）**：在当前超步被激活的节点并行运行，它们不直接修改全局字典，而是返回各自的状态增量（State Delta）；超步结束时，图引擎统一调用各通道绑定的 `Reducer` 归并状态，持久化 `Checkpoint`，再根据条件边（Conditional Edges）或节点返回的 `Command(goto=..., update=...)` 激活下一超步的节点。当业务存在**严格的合规审计、多路条件回退环路、以及必须挂起等待人类专家确认（`interrupt()`）**时，LangGraph 是目前工程控制力最强的选择。
@@ -315,11 +327,11 @@ class GlobalWorkflowState(TypedDict):
 * **4. Anthropic 生产范式（Orchestrator-Workers 动态扇出 + 外部记忆快照）**
   Anthropic 强烈建议开发者避免过度使用厚重的黑盒框架，而是围绕五种基础组合模式（Prompt Chaining、Routing、Parallelization、Orchestrator-Workers、Evaluator-Optimizer）直接编写清晰的控制流。在复杂任务中，由高智商主控模型负责拆解子任务、明确每个子智能体的输出边界与不重叠职责，并在上下文即将达到阈值前将阶段性成果写入外部持久记忆库，防止长程压缩抹平关键细节。
 
-## 第八章：智能体评测科学（从静态刷榜到 $\text{pass}^k$ 可靠性悬崖与 Agent-as-a-Judge）
+## 第八章：智能体评测科学（从静态刷榜到 pass^k 可靠性悬崖与 Agent-as-a-Judge）
 
 如果你搭建了一套多智能体系统，怎么证明它真的比单智能体更好、且敢于上线生产？传统的静态多选题题库（如 MMLU、MedQA、GSM8K）在评测多智能体时已经彻底失灵。
 
-![图 10：智能体评测科学（τ-bench 的 pass^k 可靠性悬崖与 Agent-as-a-Judge 轨迹审计）](assets/fig10-evaluation-science-and-judge.svg)
+![图 11：智能体评测科学（τ-bench 的 pass^k 可靠性悬崖与 Agent-as-a-Judge 轨迹审计）](assets/fig10-evaluation-science-and-judge.svg)
 
 ### 8.1 为什么静态题库测不出智能体能力？交互式环境基准的兴起
 
@@ -330,7 +342,7 @@ class GlobalWorkflowState(TypedDict):
 * **AgentClinic / MedAgentBench（2024-2025）**：将静态病历拆解为由独立大模型扮演的“模拟患者”与“检查检验环境”。医生智能体必须在有限问诊轮次内主动追问症状、开具合理检查单、处理不配合或表述模糊的患者，任何漏问关键禁忌症的行为都会直接导致最终诊疗失败。
 * **$\tau$-bench（Yao et al., Princeton & Sierra, 2024-2025）**：模拟航空票务与零售客服等强规则行业场景，要求智能体一边与情绪各异的模拟用户多轮对话，一边查阅长篇企业政策文档并调用数据库 API 完成退改签事务。
 
-### 8.2 $\tau$-bench 揭示的残酷真相：$\text{pass}@k$ 与 $\text{pass}^k$ 的可靠性悬崖
+### 8.2 τ-bench 揭示的残酷真相：pass@k 与 pass^k 的可靠性悬崖
 
 在大模型论文中，我们常看到亮眼的 **$\text{pass}@k$** 指标（对同一道题独立采样 $k$ 次，只要有 1 次跑通测试就算成功）：
 
@@ -340,7 +352,7 @@ $$\text{pass}@k = 1 - (1 - p)^k$$
 
 $$\text{pass}^k = p^k$$
 
-如上图 10 左侧所示，即便当今最顶尖的大模型在 $\tau$-bench 上单次成功率 $\text{pass}^1 \approx 65\%$，当考核连续 8 次零失误的 **$\text{pass}^8$** 时，成功率也会顺着指数曲线坠入 **$<25\%$ 的可靠性悬崖**！这从数学上解释了为什么生产级多智能体系统绝不能把确定性业务规则交给大模型用自然语言去“每次随机遵守”，而必须将确定性计算下沉到 MCP 工具与代码守卫中，把单步随机方差压到最低。
+如上图 11 左侧所示，即便当今最顶尖的大模型在 $\tau$-bench 上单次成功率 $\text{pass}^1 \approx 65\%$，当考核连续 8 次零失误的 **$\text{pass}^8$** 时，成功率也会顺着指数曲线坠入 **$<25\%$ 的可靠性悬崖**（注：单任务维度满足 $\text{pass}^k = p^k$，基准集整体汇报值为跨难易度任务均值 $\mathbb{E}[p_i^k]$，由琴生不等式高于 $(\mathbb{E}[p_i])^k$，因此不同难度混合下 $\text{pass}^4 \approx 36\%$、$\text{pass}^8 < 25\%$）！这从数学上解释了为什么生产级多智能体系统绝不能把确定性业务规则交给大模型用自然语言去“每次随机遵守”，而必须将确定性计算下沉到 MCP 工具与代码守卫中，把单步随机方差压到最低。
 
 ### 8.3 从 LLM-as-a-Judge 到 Agent-as-a-Judge（全轨迹工具增强审计）
 
@@ -357,9 +369,9 @@ $$\text{pass}^k = p^k$$
 3. [`notes/03-debate-dynamics-and-game-theory.md`](notes/03-debate-dynamics-and-game-theory.md)：多智能体辩论（MAD）的从众偏差、思维退化（DoT）、同源先验回音室与非对称证据等级裁决协议。
 4. [`notes/04-context-engineering-and-mast-reliability.md`](notes/04-context-engineering-and-mast-reliability.md)：UC Berkeley MAST 14 类失效模式详解、Scoped State 归约器、Context Envelope 信封协议与 Saga 逆向补偿事务代码实现。
 5. [`notes/05-production-frameworks-protocols-and-eval.md`](notes/05-production-frameworks-protocols-and-eval.md)：LangGraph BSP 超步状态机、AutoGen v0.4 Actor 运行时、OpenAI Agents SDK 并行护栏、MCP + Google A2A 协议报文解剖与 $\tau$-bench / Agent-as-a-Judge 评测体系。
-6. [`notes/06-vertical-domain-case-study.md`](notes/06-vertical-domain-case-study.md)：综合实战案例分析：如何将上述前五章的多智能体通用理论，映射到高可靠严肃医疗多模态工作流（含架构映射、状态机守卫与接口联调实践）。
+6. [`notes/06-vertical-domain-case-study.md`](notes/06-vertical-domain-case-study.md)：综合实战案例分析：如何将上述前五篇专题（对应全书八章）的多智能体通用理论，映射到高可靠严肃医疗多模态工作流（含架构映射、状态机守卫与接口联调实践）。
 
-## 核心参考文献与工业界工程报告（2023–2026）
+## 核心参考文献与工业界工程报告（2023-2026）
 
 1. **Sumers, T. R., et al.** (2024). *Cognitive Architectures for Language Agents (CoALA)*. Transactions on Machine Learning Research (TMLR). `arXiv:2309.02427`.
 2. **Cemri, M., Pan, M. Z., Yang, S., et al.** (2025). *Why Do Multi-Agent LLM Systems Fail? (MAST Taxonomy)*. UC Berkeley. `arXiv:2503.13657`.
@@ -374,3 +386,13 @@ $$\text{pass}^k = p^k$$
 11. **Zhuge, M., Zhao, C., Ashley, D., et al.** (2024). *Agent-as-a-Judge: Evaluate Agents with Agents*. `arXiv:2410.10934`.
 12. **Anthropic Engineering** (2024.12 & 2025.06). *Building Effective Agents* & *How We Built Our Multi-Agent Research System*.
 13. **Google Cloud & Partners** (2025.04). *Agent2Agent (A2A) Protocol Specification* & **Anthropic** (2024.11). *Model Context Protocol (MCP) Specification*.
+
+## 文档与资源自动化校验
+
+本仓库内置零第三方依赖的文档质检脚本与 `pytest` 完整性测试套件，覆盖本地链接与锚点、SVG XML 与排版边界、图号顺序一致性、LaTeX 公式配对及敏感信息脱敏校验：
+
+```bash
+python scripts/validate_docs.py
+ruff check scripts tests
+pytest -v
+```
